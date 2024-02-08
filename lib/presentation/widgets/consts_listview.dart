@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:memopize/presentation/widgets/digit.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
 
 class ConstsListView extends HookWidget {
