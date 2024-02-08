@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memopize/presentation/widgets/consts_listview.dart';
+import 'package:memopize/presentation/widgets/strict_num_button_panel.dart';
 
 import '../widgets/rnd_button.dart';
 
@@ -15,6 +16,10 @@ class Home extends StatelessWidget {
         body: const Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[RndButton(), ConstsListView()])));
+                children: <Widget>[
+              RndButton(),
+              ConstsListView(),
+              StrictNumButtonPanel()
+            ])));
   }
 }
