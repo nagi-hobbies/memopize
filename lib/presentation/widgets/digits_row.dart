@@ -5,6 +5,8 @@ class DigitsRow extends StatelessWidget {
   final String digits;
   final int rowInd;
   final int openDigitsNum;
+
+  /// 一行分の数字を表示する
   const DigitsRow({
     super.key,
     required this.digits,

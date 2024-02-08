@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:memopize/application/usecases/strictmode.dart';
+import 'package:memopize/presentation/widgets/strict_button.dart';
 
-class StrictNumButtonPanel extends StatelessWidget {
+class StrictButtonPanel extends ConsumerWidget {
   final double w = 80;
   final double h = 80;
-  const StrictNumButtonPanel({super.key});
+
+  /// strict mode での数字ボタンパネル
+  const StrictButtonPanel({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: w * 3,
       height: h * 4,
@@ -21,9 +26,12 @@ class StrictNumButtonPanel extends StatelessWidget {
                 (index) => SizedBox(
                       width: w,
                       height: h,
-                      child: ElevatedButton(
-                          onPressed: () => debugPrint('${index + 1}'),
-                          child: Text((index + 1).toString())),
+                      child: StrictButton(
+                          onPressed: () {
+                            final usecase = StrictModeUseCase(ref: ref);
+                            usecase.pressedNumber(index + 1);
+                          },
+                          number: index + 1),
                     )),
             SizedBox(
               width: w,

@@ -3,42 +3,42 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memopize/application/state/s_digits_array.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
+import 'package:memopize/application/usecases/strictmode.dart';
+import 'package:memopize/domain/types/play_settings.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
 
+import '../../application/state/s_play_settings.dart';
+
 class ConstsListView extends HookConsumerWidget {
+  /// 数字を表示するリストビュー
   const ConstsListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
-    calOpenInd(int index, int openDigitsNum) {
-      if (index - 10 > openDigitsNum ~/ 10) {
-        return 0;
-      } else if (index - 10 < openDigitsNum ~/ 10) {
-        return 10;
-      }
-      return index ~/ 2 % 11;
-    }
+    final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
 
-    final counts = useState(30);
-    final text = Text('Count: ${counts.value}');
+    final digisArray = ref.watch(sDigitsArrayNotifierProvider);
     final nowIndex = useState(0);
     final nowIndexText = Text('Now Index: ${nowIndex.value}');
     final listView = ListView.builder(
-        itemCount: counts.value,
+        itemCount: digisArray.length,
         itemBuilder: (BuildContext context, int index) {
           Future.delayed(const Duration(milliseconds: 0), () {
             nowIndex.value = index;
           });
+          if (index + 10 >= digisArray.length) {
+            final usecase = StrictModeUseCase(ref: ref);
+            usecase.loadNextDigits();
+            // ビルド数ループ分遅らせる
+            // Future.delayed(const Duration(milliseconds: 1), () {
+            //   counts.value += 10;
+            // });
+          }
           if (index.isOdd) {
             return const Divider();
-          }
-          if (index + 10 >= counts.value) {
-            // ビルド数ループ分遅らせる
-            Future.delayed(const Duration(milliseconds: 1), () {
-              counts.value += 10;
-            });
           }
           return Container(
               decoration: BoxDecoration(
@@ -47,13 +47,13 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      digits: "0123456789",
+                      digits: "0123456789".substring(0, playSettings.rowLength),
                       rowInd: index ~/ 2,
                       openDigitsNum: openDigitsNum)));
         });
     return Column(
       children: [
-        text,
+        Text('length: ${digisArray.length}'),
         nowIndexText,
         SizedBox(height: 200, child: listView),
         TextButton(
