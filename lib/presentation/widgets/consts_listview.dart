@@ -42,9 +42,6 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      // digits: constData.split('.')[1].substring(
-                      //     (index - 1) * playSettings.rowLength,
-                      //     index * playSettings.rowLength),
                       digits: constData.split('.')[1].substring(
                           (index - 1) * playSettings.rowLength,
                           index * playSettings.rowLength),
