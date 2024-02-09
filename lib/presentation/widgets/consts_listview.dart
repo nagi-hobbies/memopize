@@ -1,32 +1,39 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memopize/application/state/s_const_data.dart';
+import 'package:memopize/application/state/s_open_digits_num.dart';
+import 'package:memopize/domain/types/play_settings.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
 
-class ConstsListView extends HookWidget {
+import '../../application/state/s_play_settings.dart';
+
+class ConstsListView extends HookConsumerWidget {
+  /// 数字を表示するリストビュー
   const ConstsListView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final counts = useState(30);
-    final text = Text('Count: ${counts.value}');
-    final nowIndex = useState(0);
-    final nowIndexText = Text('Now Index: ${nowIndex.value}');
-    final listView = ListView.builder(
-        itemCount: counts.value,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
+    final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
+
+    final constData = ref.watch(sConstDataNotifierProvider);
+    final listView = ListView.separated(
+        itemCount: constData.length != 0
+            ? constData.split('.')[1].length ~/ playSettings.rowLength + 1
+            : 0,
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
         itemBuilder: (BuildContext context, int index) {
-          Future.delayed(const Duration(milliseconds: 0), () {
-            nowIndex.value = index;
-          });
-          if (index.isOdd) {
-            return const Divider();
-          }
-          if (index + 10 >= counts.value) {
-            // ビルド数ループ分遅らせる
-            Future.delayed(const Duration(milliseconds: 1), () {
-              counts.value += 10;
-            });
+          if (index == 0) {
+            return Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                ),
+                alignment: Alignment.center,
+                child: Center(
+                    child: DigitsRow(
+                        digits: constData.split('.')[0],
+                        colInd: 0,
+                        openDigitsNum: playSettings.rowLength)));
           }
           return Container(
               decoration: BoxDecoration(
@@ -35,13 +42,23 @@ class ConstsListView extends HookWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      digits: "0123456789", openInd: index ~/ 2 % 11)));
+                      // digits: constData.split('.')[1].substring(
+                      //     (index - 1) * playSettings.rowLength,
+                      //     index * playSettings.rowLength),
+                      digits: constData.split('.')[1].substring(
+                          (index - 1) * playSettings.rowLength,
+                          index * playSettings.rowLength),
+                      colInd: index,
+                      openDigitsNum: openDigitsNum)));
         });
     return Column(
       children: [
-        text,
-        nowIndexText,
-        SizedBox(height: 400, child: listView),
+        SizedBox(height: 200, child: listView),
+        TextButton(
+            onPressed: () => {
+                  ref.read(sOpenDigitsNumNotifierProvider.notifier).increment(),
+                },
+            child: const Text('Increment'))
       ],
     );
   }

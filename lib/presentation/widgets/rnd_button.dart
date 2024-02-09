@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/state/s_themeseed.dart';
 
 class RndButton extends ConsumerWidget {
+  /// ランダムにテーマのシードカラーを変更するボタン
   const RndButton({super.key});
 
   @override
