@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:memopize/application/state/s_digits_array.dart';
+import 'package:memopize/application/state/s_const_data.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
-import 'package:memopize/application/usecases/strictmode.dart';
 import 'package:memopize/domain/types/play_settings.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
 
@@ -20,14 +16,25 @@ class ConstsListView extends HookConsumerWidget {
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
     final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
 
-    final digisArray = ref.watch(sDigitsArrayNotifierProvider);
+    final constData = ref.watch(sConstDataNotifierProvider);
     final listView = ListView.separated(
-        itemCount: digisArray.length,
+        itemCount: constData.length != 0
+            ? constData.split('.')[1].length ~/ playSettings.rowLength + 1
+            : 0,
         separatorBuilder: (BuildContext context, int index) => const Divider(),
         itemBuilder: (BuildContext context, int index) {
-          // if (index.isOdd) {
-          //   return const Divider();
-          // }
+          if (index == 0) {
+            return Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                ),
+                alignment: Alignment.center,
+                child: Center(
+                    child: DigitsRow(
+                        digits: constData.split('.')[0],
+                        colInd: 0,
+                        openDigitsNum: playSettings.rowLength)));
+          }
           return Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -35,18 +42,21 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      digits: digisArray[index],
-                      rowInd: index,
+                      // digits: constData.split('.')[1].substring(
+                      //     (index - 1) * playSettings.rowLength,
+                      //     index * playSettings.rowLength),
+                      digits: constData.split('.')[1].substring(
+                          (index - 1) * playSettings.rowLength,
+                          index * playSettings.rowLength),
+                      colInd: index,
                       openDigitsNum: openDigitsNum)));
         });
     return Column(
       children: [
-        Text('length: ${digisArray.length}'),
         SizedBox(height: 200, child: listView),
         TextButton(
             onPressed: () => {
                   ref.read(sOpenDigitsNumNotifierProvider.notifier).increment(),
-                  debugPrint(openDigitsNum.toString())
                 },
             child: const Text('Increment'))
       ],

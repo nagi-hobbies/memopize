@@ -1,8 +1,5 @@
 class DigitJudgementor {
-  bool judge(int inputDigit, int openDigitsNum) {
-    if (inputDigit < openDigitsNum) {
-      return true;
-    }
-    return false;
+  bool judge(String inputStr, int openDigitsNum, String constData) {
+    return inputStr == constData.split('.')[1][openDigitsNum];
   }
 }

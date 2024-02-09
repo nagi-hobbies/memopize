@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:memopize/application/usecases/strictmode.dart';
+import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/presentation/widgets/strict_button.dart';
 
 class StrictButtonPanel extends ConsumerWidget {
@@ -28,8 +28,8 @@ class StrictButtonPanel extends ConsumerWidget {
                       height: h,
                       child: StrictButton(
                           onPressed: () {
-                            final usecase = StrictModeUseCase(ref: ref);
-                            usecase.pressedNumber(index + 1);
+                            final usecase = ref.read(pressedNumUseCaseProvider);
+                            usecase.pressedNum(index + 1);
                           },
                           number: index + 1),
                     )),
@@ -42,8 +42,8 @@ class StrictButtonPanel extends ConsumerWidget {
                 height: h,
                 child: ElevatedButton(
                     onPressed: () {
-                      final usecase = StrictModeUseCase(ref: ref);
-                      usecase.pressedNumber(0);
+                      final usecase = ref.read(pressedNumUseCaseProvider);
+                      usecase.pressedNum(0);
                     },
                     child: const Text('0'))),
             SizedBox(

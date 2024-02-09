@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:memopize/application/state/s_const_data.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 import 'package:memopize/presentation/widgets/consts_listview.dart';
@@ -26,6 +27,7 @@ class GamePage extends ConsumerWidget {
               StrictButtonPanel(),
               ElevatedButton(
                   onPressed: () {
+                    ref.read(sConstDataNotifierProvider.notifier).clear();
                     final router = ref.read(goRouterProvider);
                     router.goNamed(
                       PageId.select.routeName,

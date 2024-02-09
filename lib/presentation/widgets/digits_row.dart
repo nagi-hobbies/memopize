@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:memopize/application/state/s_play_settings.dart';
+import 'package:memopize/domain/types/play_settings.dart';
 import 'package:memopize/presentation/widgets/digit.dart';
 
-class DigitsRow extends StatelessWidget {
+class DigitsRow extends ConsumerWidget {
   final String digits;
-  final int rowInd;
+  final int colInd;
   final int openDigitsNum;
 
   /// 一行分の数字を表示する
   const DigitsRow({
     super.key,
     required this.digits,
-    required this.rowInd,
+    required this.colInd,
     required this.openDigitsNum,
   });
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
     bool isOpen(int index) {
-      if (index + digits.length * rowInd < openDigitsNum) {
+      if (index + playSettings.rowLength * (colInd - 1) < openDigitsNum) {
         return true;
       }
       return false;

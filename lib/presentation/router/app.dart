@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memopize/application/state/s_themeseed.dart';
-import 'package:memopize/presentation/pages/game_page.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/theme/theme.dart';
 
@@ -21,12 +20,5 @@ class MyApp extends ConsumerWidget {
       theme: createThemeData(themeSeed, Brightness.light),
       darkTheme: createThemeData(themeSeed, Brightness.dark),
     );
-    // return MaterialApp(
-    //   title: 'Theme Tutorial',
-    //   theme: createThemeData(themeSeed, Brightness.light),
-    //   darkTheme: createThemeData(themeSeed, Brightness.dark),
-    //   themeMode: ThemeMode.system,
-    //   home: const GamePage(),
-    // );
   }
 }
