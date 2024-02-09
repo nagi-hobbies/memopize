@@ -7,7 +7,7 @@ part of 's_open_digits_num.dart';
 // **************************************************************************
 
 String _$sOpenDigitsNumNotifierHash() =>
-    r'3cdac792902db9f5f5c1b9a1d3ab7908a4ad260b';
+    r'9b156adbd97db2edf06c42bf54fb4e5ae7524235';
 
 /// See also [SOpenDigitsNumNotifier].
 @ProviderFor(SOpenDigitsNumNotifier)

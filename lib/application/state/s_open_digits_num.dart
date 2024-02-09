@@ -12,4 +12,9 @@ class SOpenDigitsNumNotifier extends _$SOpenDigitsNumNotifier {
   void increment() {
     state += 1;
   }
+
+  void decrement() {
+    if (state == 0) return;
+    state -= 1;
+  }
 }

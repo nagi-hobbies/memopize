@@ -41,7 +41,11 @@ class StrictButtonPanel extends ConsumerWidget {
                 width: w,
                 height: h,
                 child: ElevatedButton(
-                    onPressed: () => debugPrint('0'), child: const Text('0'))),
+                    onPressed: () {
+                      final usecase = StrictModeUseCase(ref: ref);
+                      usecase.pressedNumber(0);
+                    },
+                    child: const Text('0'))),
             SizedBox(
               width: w,
               height: h,

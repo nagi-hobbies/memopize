@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PlaySettings {
+  String get constName => throw _privateConstructorUsedError;
   int get rowLength => throw _privateConstructorUsedError;
   double get digitFontSize => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $PlaySettingsCopyWith<$Res> {
           PlaySettings value, $Res Function(PlaySettings) then) =
       _$PlaySettingsCopyWithImpl<$Res, PlaySettings>;
   @useResult
-  $Res call({int rowLength, double digitFontSize});
+  $Res call({String constName, int rowLength, double digitFontSize});
 }
 
 /// @nodoc
@@ -46,10 +47,15 @@ class _$PlaySettingsCopyWithImpl<$Res, $Val extends PlaySettings>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? constName = null,
     Object? rowLength = null,
     Object? digitFontSize = null,
   }) {
     return _then(_value.copyWith(
+      constName: null == constName
+          ? _value.constName
+          : constName // ignore: cast_nullable_to_non_nullable
+              as String,
       rowLength: null == rowLength
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$PlaySettingsImplCopyWith<$Res>
       __$$PlaySettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int rowLength, double digitFontSize});
+  $Res call({String constName, int rowLength, double digitFontSize});
 }
 
 /// @nodoc
@@ -84,10 +90,15 @@ class __$$PlaySettingsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? constName = null,
     Object? rowLength = null,
     Object? digitFontSize = null,
   }) {
     return _then(_$PlaySettingsImpl(
+      constName: null == constName
+          ? _value.constName
+          : constName // ignore: cast_nullable_to_non_nullable
+              as String,
       rowLength: null == rowLength
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
@@ -104,8 +115,12 @@ class __$$PlaySettingsImplCopyWithImpl<$Res>
 
 class _$PlaySettingsImpl implements _PlaySettings {
   const _$PlaySettingsImpl(
-      {required this.rowLength, required this.digitFontSize});
+      {required this.constName,
+      required this.rowLength,
+      required this.digitFontSize});
 
+  @override
+  final String constName;
   @override
   final int rowLength;
   @override
@@ -113,7 +128,7 @@ class _$PlaySettingsImpl implements _PlaySettings {
 
   @override
   String toString() {
-    return 'PlaySettings(rowLength: $rowLength, digitFontSize: $digitFontSize)';
+    return 'PlaySettings(constName: $constName, rowLength: $rowLength, digitFontSize: $digitFontSize)';
   }
 
   @override
@@ -121,6 +136,8 @@ class _$PlaySettingsImpl implements _PlaySettings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlaySettingsImpl &&
+            (identical(other.constName, constName) ||
+                other.constName == constName) &&
             (identical(other.rowLength, rowLength) ||
                 other.rowLength == rowLength) &&
             (identical(other.digitFontSize, digitFontSize) ||
@@ -128,7 +145,8 @@ class _$PlaySettingsImpl implements _PlaySettings {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rowLength, digitFontSize);
+  int get hashCode =>
+      Object.hash(runtimeType, constName, rowLength, digitFontSize);
 
   @JsonKey(ignore: true)
   @override
@@ -139,9 +157,12 @@ class _$PlaySettingsImpl implements _PlaySettings {
 
 abstract class _PlaySettings implements PlaySettings {
   const factory _PlaySettings(
-      {required final int rowLength,
+      {required final String constName,
+      required final int rowLength,
       required final double digitFontSize}) = _$PlaySettingsImpl;
 
+  @override
+  String get constName;
   @override
   int get rowLength;
   @override

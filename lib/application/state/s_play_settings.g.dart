@@ -7,7 +7,7 @@ part of 's_play_settings.dart';
 // **************************************************************************
 
 String _$sPlaySettingsNotifierHash() =>
-    r'8821e13897cd5520ca01d8055253224a410a0a21';
+    r'79a41d7f47bd298fd79c67e7e558afde19dd85eb';
 
 /// See also [SPlaySettingsNotifier].
 @ProviderFor(SPlaySettingsNotifier)

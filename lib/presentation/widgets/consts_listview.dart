@@ -21,25 +21,13 @@ class ConstsListView extends HookConsumerWidget {
     final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
 
     final digisArray = ref.watch(sDigitsArrayNotifierProvider);
-    final nowIndex = useState(0);
-    final nowIndexText = Text('Now Index: ${nowIndex.value}');
-    final listView = ListView.builder(
+    final listView = ListView.separated(
         itemCount: digisArray.length,
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
         itemBuilder: (BuildContext context, int index) {
-          Future.delayed(const Duration(milliseconds: 0), () {
-            nowIndex.value = index;
-          });
-          if (index + 10 >= digisArray.length) {
-            final usecase = StrictModeUseCase(ref: ref);
-            usecase.loadNextDigits();
-            // ビルド数ループ分遅らせる
-            // Future.delayed(const Duration(milliseconds: 1), () {
-            //   counts.value += 10;
-            // });
-          }
-          if (index.isOdd) {
-            return const Divider();
-          }
+          // if (index.isOdd) {
+          //   return const Divider();
+          // }
           return Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -47,14 +35,13 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      digits: "0123456789".substring(0, playSettings.rowLength),
-                      rowInd: index ~/ 2,
+                      digits: digisArray[index],
+                      rowInd: index,
                       openDigitsNum: openDigitsNum)));
         });
     return Column(
       children: [
         Text('length: ${digisArray.length}'),
-        nowIndexText,
         SizedBox(height: 200, child: listView),
         TextButton(
             onPressed: () => {

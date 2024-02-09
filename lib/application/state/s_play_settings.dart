@@ -7,7 +7,8 @@ part 's_play_settings.g.dart';
 class SPlaySettingsNotifier extends _$SPlaySettingsNotifier {
   @override
   PlaySettings build() {
-    return const PlaySettings(rowLength: 4, digitFontSize: 20.0);
+    return const PlaySettings(
+        constName: 'pi', rowLength: 10, digitFontSize: 40.0);
   }
 
   void setRowLength(int rowLength) {
