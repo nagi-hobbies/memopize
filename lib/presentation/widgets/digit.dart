@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:memopize/application/state/s_play_settings.dart';
 import 'package:memopize/domain/types/play_settings.dart';
 
@@ -14,8 +15,9 @@ class Digit extends ConsumerWidget {
     final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
     return Text(
       digit != '-1' ? digit.toString() : '?', // -1 は非表示
-      style: TextStyle(
-          fontSize: playSettings.digitFontSize, fontFamily: "monospace"),
+      style: GoogleFonts.sono(
+        fontSize: playSettings.digitFontSize,
+      ),
     );
   }
 }

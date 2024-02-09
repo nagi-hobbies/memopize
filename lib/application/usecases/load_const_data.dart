@@ -10,8 +10,8 @@ class LoadConstDataUseCase {
   final String constName;
 
   Future<void> loadConstData() async {
-    final loader = ConstDataLoader();
-    final data = loader.getInitData(constName);
+    final ConstDataLoader loader = ConstDataLoader();
+    final String data = await loader.getInitData(constName);
     sConstDataNotifier.add(data);
   }
 }

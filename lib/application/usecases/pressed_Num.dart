@@ -15,6 +15,7 @@ class PressedNumUseCase {
     final judgementor = DigitJudgementor();
     final bool result = judgementor.judge(pressedNum.toString(),
         openDigitsNumNotifier.value, constDataNotifier.value);
+
     if (result) {
       openDigitsNumNotifier.increment();
     } else {
