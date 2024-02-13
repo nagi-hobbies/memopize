@@ -14,8 +14,6 @@ class PressedContinueUseCase {
   final SIsWaitingInputNotifier sIsWaitingInputNotifier;
   final SOpenDigitsNumNotifier sOpenDigitsNumNotifier;
   void call() {
-    final incNum = sScoreNotifier.value - sOpenDigitsNumNotifier.value;
-    debugPrint('incNum: $incNum');
     sOpenDigitsNumNotifier.set(sScoreNotifier.value);
     sIsWaitingInputNotifier.toggle();
   }
