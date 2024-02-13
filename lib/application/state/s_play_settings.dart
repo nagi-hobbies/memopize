@@ -11,6 +11,8 @@ class SPlaySettingsNotifier extends _$SPlaySettingsNotifier {
         constName: 'pi', rowLength: 10, digitFontSize: 40.0);
   }
 
+  PlaySettings get value => state;
+
   void setRowLength(int rowLength) {
     state = state.copyWith(rowLength: rowLength);
   }

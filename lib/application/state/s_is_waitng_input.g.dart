@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 's_play_settings.dart';
+part of 's_is_waitng_input.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sPlaySettingsNotifierHash() =>
-    r'66e61a3f7c77539b69db8c463d4997568153a7b1';
+String _$sIsWaitingInputNotifierHash() =>
+    r'27d3d85397524e179620666d5f42839db5517281';
 
-/// See also [SPlaySettingsNotifier].
-@ProviderFor(SPlaySettingsNotifier)
-final sPlaySettingsNotifierProvider =
-    AutoDisposeNotifierProvider<SPlaySettingsNotifier, PlaySettings>.internal(
-  SPlaySettingsNotifier.new,
-  name: r'sPlaySettingsNotifierProvider',
+/// See also [SIsWaitingInputNotifier].
+@ProviderFor(SIsWaitingInputNotifier)
+final sIsWaitingInputNotifierProvider =
+    AutoDisposeNotifierProvider<SIsWaitingInputNotifier, bool>.internal(
+  SIsWaitingInputNotifier.new,
+  name: r'sIsWaitingInputNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$sPlaySettingsNotifierHash,
+      : _$sIsWaitingInputNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SPlaySettingsNotifier = AutoDisposeNotifier<PlaySettings>;
+typedef _$SIsWaitingInputNotifier = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

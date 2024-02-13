@@ -18,5 +18,9 @@ class SOpenDigitsNumNotifier extends _$SOpenDigitsNumNotifier {
     state -= 1;
   }
 
+  void set(value) {
+    state = value;
+  }
+
   int get value => state;
 }
