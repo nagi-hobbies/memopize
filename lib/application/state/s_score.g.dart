@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 's_play_settings.dart';
+part of 's_score.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sPlaySettingsNotifierHash() =>
-    r'66e61a3f7c77539b69db8c463d4997568153a7b1';
+String _$sScoreNotifierHash() => r'e6b6da1fec6758df373d142c1f91edc128f03355';
 
-/// See also [SPlaySettingsNotifier].
-@ProviderFor(SPlaySettingsNotifier)
-final sPlaySettingsNotifierProvider =
-    AutoDisposeNotifierProvider<SPlaySettingsNotifier, PlaySettings>.internal(
-  SPlaySettingsNotifier.new,
-  name: r'sPlaySettingsNotifierProvider',
+/// See also [SScoreNotifier].
+@ProviderFor(SScoreNotifier)
+final sScoreNotifierProvider =
+    AutoDisposeNotifierProvider<SScoreNotifier, int>.internal(
+  SScoreNotifier.new,
+  name: r'sScoreNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$sPlaySettingsNotifierHash,
+      : _$sScoreNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SPlaySettingsNotifier = AutoDisposeNotifier<PlaySettings>;
+typedef _$SScoreNotifier = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

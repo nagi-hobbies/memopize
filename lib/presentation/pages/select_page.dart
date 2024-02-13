@@ -20,8 +20,8 @@ class SelectPage extends ConsumerWidget {
               (constName) {
                 return ElevatedButton(
                   onPressed: () async {
-                    final usecase =
-                        ref.read(loadConstDataUseCaseProvider(constName));
+                    final usecase = ref
+                        .read(loadConstDataUseCaseNotifierProvider(constName));
                     await usecase.loadConstData();
                     final router = ref.read(goRouterProvider);
                     router.goNamed(

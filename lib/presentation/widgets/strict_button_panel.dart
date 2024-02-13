@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memopize/application/di/usecases.dart';
+import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/presentation/widgets/strict_button.dart';
 
 class StrictButtonPanel extends ConsumerWidget {
@@ -12,6 +13,14 @@ class StrictButtonPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isWaitingInput = ref.watch(sIsWaitingInputNotifierProvider);
+
+    // getOnPressedFunc
+    void onPressed(int pressedNum) {
+      final usecase = ref.read(pressedNumUseCaseNotifierProvider);
+      usecase.pressedNum(pressedNum);
+    }
+
     return SizedBox(
       width: w * 3,
       height: h * 4,
@@ -27,10 +36,9 @@ class StrictButtonPanel extends ConsumerWidget {
                       width: w,
                       height: h,
                       child: StrictButton(
-                          onPressed: () {
-                            final usecase = ref.read(pressedNumUseCaseProvider);
-                            usecase.pressedNum(index + 1);
-                          },
+                          onPressed: isWaitingInput
+                              ? () => onPressed(index + 1)
+                              : null,
                           number: index + 1),
                     )),
             SizedBox(
@@ -40,12 +48,9 @@ class StrictButtonPanel extends ConsumerWidget {
             SizedBox(
                 width: w,
                 height: h,
-                child: ElevatedButton(
-                    onPressed: () {
-                      final usecase = ref.read(pressedNumUseCaseProvider);
-                      usecase.pressedNum(0);
-                    },
-                    child: const Text('0'))),
+                child: StrictButton(
+                    onPressed: isWaitingInput ? () => onPressed(0) : null,
+                    number: 0)),
             SizedBox(
               width: w,
               height: h,

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class StrictButton extends ConsumerWidget {
   const StrictButton(
       {super.key, required this.onPressed, required this.number});
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final int number;
 
   @override

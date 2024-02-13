@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memopize/application/state/s_const_data.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
+import 'package:memopize/application/state/s_score.dart';
 import 'package:memopize/domain/types/play_settings.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
 
@@ -17,6 +18,7 @@ class ConstsListView extends HookConsumerWidget {
     final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
 
     final constData = ref.watch(sConstDataNotifierProvider);
+    final score = ref.watch(sScoreNotifierProvider);
     final listView = ListView.separated(
         itemCount: constData.length != 0
             ? constData.split('.')[1].length ~/ playSettings.rowLength + 1
@@ -31,9 +33,11 @@ class ConstsListView extends HookConsumerWidget {
                 alignment: Alignment.center,
                 child: Center(
                     child: DigitsRow(
-                        digits: constData.split('.')[0],
-                        colInd: 0,
-                        openDigitsNum: playSettings.rowLength)));
+                  digits: constData.split('.')[0],
+                  colInd: 0,
+                  openDigitsNum: playSettings.rowLength,
+                  score: score,
+                )));
           }
           return Container(
               decoration: BoxDecoration(
@@ -42,11 +46,13 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                      digits: constData.split('.')[1].substring(
-                          (index - 1) * playSettings.rowLength,
-                          index * playSettings.rowLength),
-                      colInd: index,
-                      openDigitsNum: openDigitsNum)));
+                digits: constData.split('.')[1].substring(
+                    (index - 1) * playSettings.rowLength,
+                    index * playSettings.rowLength),
+                colInd: index,
+                openDigitsNum: openDigitsNum,
+                score: score,
+              )));
         });
     return Column(
       children: [

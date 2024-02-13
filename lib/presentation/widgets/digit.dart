@@ -5,10 +5,10 @@ import 'package:memopize/application/state/s_play_settings.dart';
 import 'package:memopize/domain/types/play_settings.dart';
 
 class Digit extends ConsumerWidget {
-  final String digit;
-
   /// 一つの数字を表示する
-  const Digit({super.key, required this.digit});
+  const Digit({super.key, required this.digit, required this.creared});
+  final String digit;
+  final bool creared;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,6 +17,7 @@ class Digit extends ConsumerWidget {
       digit != '-1' ? digit.toString() : '?', // -1 は非表示
       style: GoogleFonts.sono(
         fontSize: playSettings.digitFontSize,
+        color: creared ? Colors.green : Colors.red,
       ),
     );
   }
