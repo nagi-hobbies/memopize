@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:memopize/application/state/s_const_data.dart';
-import 'package:memopize/application/state/s_is_pressed_continue.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_play_settings.dart';
@@ -10,14 +8,14 @@ import 'package:memopize/domain/features/digit_judgementor.dart';
 class PressedNumUseCase {
   PressedNumUseCase({
     required this.openDigitsNumNotifier,
-    required this.constDataNotifier,
+    required this.constValueNotifier,
     required this.isWaitingInputNotifier,
     required this.playSettingsNotifier,
     required this.scoreNotifier,
   });
 
   final SOpenDigitsNumNotifier openDigitsNumNotifier;
-  final SConstDataNotifier constDataNotifier;
+  final SConstValueNotifier constValueNotifier;
   final SIsWaitingInputNotifier isWaitingInputNotifier;
   final SPlaySettingsNotifier playSettingsNotifier;
   final SScoreNotifier scoreNotifier;
@@ -25,14 +23,16 @@ class PressedNumUseCase {
   Future<void> pressedNum(int pressedNum) async {
     final judgementor = DigitJudgementor();
     final bool result = judgementor.judge(pressedNum.toString(),
-        openDigitsNumNotifier.value, constDataNotifier.value);
+        openDigitsNumNotifier.value, constValueNotifier.value);
 
     if (result) {
       openDigitsNumNotifier.increment();
-      scoreNotifier.set(openDigitsNumNotifier.value);
+      if (scoreNotifier.value < openDigitsNumNotifier.value) {
+        scoreNotifier.set(openDigitsNumNotifier.value);
+      }
     } else {
       isWaitingInputNotifier.toggle();
-      openDigitsNumNotifier.set(constDataNotifier.value.length);
+      openDigitsNumNotifier.set(constValueNotifier.value.length);
 
       //
       // final rowLength = playSettingsNotifier.value.rowLength;

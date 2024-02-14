@@ -9,9 +9,13 @@ class StrictButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: Text(number.toString()),
+    return FractionallySizedBox(
+      widthFactor: 0.9,
+      heightFactor: 0.9,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(number.toString()),
+      ),
     );
   }
 }

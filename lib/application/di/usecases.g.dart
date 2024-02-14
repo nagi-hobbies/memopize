@@ -6,8 +6,8 @@ part of 'usecases.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loadConstDataUseCaseNotifierHash() =>
-    r'49a4978e030de516fef6e7a1baaac51fb25136c4';
+String _$loadConstValueUseCaseNotifierHash() =>
+    r'199ed5e4495dff76a76c4c0b5a994ff4eb94ec43';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,28 +30,29 @@ class _SystemHash {
   }
 }
 
-/// See also [loadConstDataUseCaseNotifier].
-@ProviderFor(loadConstDataUseCaseNotifier)
-const loadConstDataUseCaseNotifierProvider =
-    LoadConstDataUseCaseNotifierFamily();
+/// See also [loadConstValueUseCaseNotifier].
+@ProviderFor(loadConstValueUseCaseNotifier)
+const loadConstValueUseCaseNotifierProvider =
+    LoadConstValueUseCaseNotifierFamily();
 
-/// See also [loadConstDataUseCaseNotifier].
-class LoadConstDataUseCaseNotifierFamily extends Family<LoadConstDataUseCase> {
-  /// See also [loadConstDataUseCaseNotifier].
-  const LoadConstDataUseCaseNotifierFamily();
+/// See also [loadConstValueUseCaseNotifier].
+class LoadConstValueUseCaseNotifierFamily
+    extends Family<LoadConstValueUseCase> {
+  /// See also [loadConstValueUseCaseNotifier].
+  const LoadConstValueUseCaseNotifierFamily();
 
-  /// See also [loadConstDataUseCaseNotifier].
-  LoadConstDataUseCaseNotifierProvider call(
+  /// See also [loadConstValueUseCaseNotifier].
+  LoadConstValueUseCaseNotifierProvider call(
     String constName,
   ) {
-    return LoadConstDataUseCaseNotifierProvider(
+    return LoadConstValueUseCaseNotifierProvider(
       constName,
     );
   }
 
   @override
-  LoadConstDataUseCaseNotifierProvider getProviderOverride(
-    covariant LoadConstDataUseCaseNotifierProvider provider,
+  LoadConstValueUseCaseNotifierProvider getProviderOverride(
+    covariant LoadConstValueUseCaseNotifierProvider provider,
   ) {
     return call(
       provider.constName,
@@ -70,33 +71,33 @@ class LoadConstDataUseCaseNotifierFamily extends Family<LoadConstDataUseCase> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'loadConstDataUseCaseNotifierProvider';
+  String? get name => r'loadConstValueUseCaseNotifierProvider';
 }
 
-/// See also [loadConstDataUseCaseNotifier].
-class LoadConstDataUseCaseNotifierProvider
-    extends AutoDisposeProvider<LoadConstDataUseCase> {
-  /// See also [loadConstDataUseCaseNotifier].
-  LoadConstDataUseCaseNotifierProvider(
+/// See also [loadConstValueUseCaseNotifier].
+class LoadConstValueUseCaseNotifierProvider
+    extends AutoDisposeProvider<LoadConstValueUseCase> {
+  /// See also [loadConstValueUseCaseNotifier].
+  LoadConstValueUseCaseNotifierProvider(
     String constName,
   ) : this._internal(
-          (ref) => loadConstDataUseCaseNotifier(
-            ref as LoadConstDataUseCaseNotifierRef,
+          (ref) => loadConstValueUseCaseNotifier(
+            ref as LoadConstValueUseCaseNotifierRef,
             constName,
           ),
-          from: loadConstDataUseCaseNotifierProvider,
-          name: r'loadConstDataUseCaseNotifierProvider',
+          from: loadConstValueUseCaseNotifierProvider,
+          name: r'loadConstValueUseCaseNotifierProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$loadConstDataUseCaseNotifierHash,
-          dependencies: LoadConstDataUseCaseNotifierFamily._dependencies,
+                  : _$loadConstValueUseCaseNotifierHash,
+          dependencies: LoadConstValueUseCaseNotifierFamily._dependencies,
           allTransitiveDependencies:
-              LoadConstDataUseCaseNotifierFamily._allTransitiveDependencies,
+              LoadConstValueUseCaseNotifierFamily._allTransitiveDependencies,
           constName: constName,
         );
 
-  LoadConstDataUseCaseNotifierProvider._internal(
+  LoadConstValueUseCaseNotifierProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -110,13 +111,13 @@ class LoadConstDataUseCaseNotifierProvider
 
   @override
   Override overrideWith(
-    LoadConstDataUseCase Function(LoadConstDataUseCaseNotifierRef provider)
+    LoadConstValueUseCase Function(LoadConstValueUseCaseNotifierRef provider)
         create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: LoadConstDataUseCaseNotifierProvider._internal(
-        (ref) => create(ref as LoadConstDataUseCaseNotifierRef),
+      override: LoadConstValueUseCaseNotifierProvider._internal(
+        (ref) => create(ref as LoadConstValueUseCaseNotifierRef),
         from: from,
         name: null,
         dependencies: null,
@@ -128,13 +129,13 @@ class LoadConstDataUseCaseNotifierProvider
   }
 
   @override
-  AutoDisposeProviderElement<LoadConstDataUseCase> createElement() {
-    return _LoadConstDataUseCaseNotifierProviderElement(this);
+  AutoDisposeProviderElement<LoadConstValueUseCase> createElement() {
+    return _LoadConstValueUseCaseNotifierProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is LoadConstDataUseCaseNotifierProvider &&
+    return other is LoadConstValueUseCaseNotifierProvider &&
         other.constName == constName;
   }
 
@@ -147,24 +148,24 @@ class LoadConstDataUseCaseNotifierProvider
   }
 }
 
-mixin LoadConstDataUseCaseNotifierRef
-    on AutoDisposeProviderRef<LoadConstDataUseCase> {
+mixin LoadConstValueUseCaseNotifierRef
+    on AutoDisposeProviderRef<LoadConstValueUseCase> {
   /// The parameter `constName` of this provider.
   String get constName;
 }
 
-class _LoadConstDataUseCaseNotifierProviderElement
-    extends AutoDisposeProviderElement<LoadConstDataUseCase>
-    with LoadConstDataUseCaseNotifierRef {
-  _LoadConstDataUseCaseNotifierProviderElement(super.provider);
+class _LoadConstValueUseCaseNotifierProviderElement
+    extends AutoDisposeProviderElement<LoadConstValueUseCase>
+    with LoadConstValueUseCaseNotifierRef {
+  _LoadConstValueUseCaseNotifierProviderElement(super.provider);
 
   @override
   String get constName =>
-      (origin as LoadConstDataUseCaseNotifierProvider).constName;
+      (origin as LoadConstValueUseCaseNotifierProvider).constName;
 }
 
 String _$pressedNumUseCaseNotifierHash() =>
-    r'394b6be4a7b8766df57068c1803053a0aa409815';
+    r'6f80d259250617d541bca0eb0f2ce3c6007e4ab3';
 
 /// See also [pressedNumUseCaseNotifier].
 @ProviderFor(pressedNumUseCaseNotifier)
@@ -199,5 +200,23 @@ final pressedContinueUseCaseNotifierProvider =
 
 typedef PressedContinueUseCaseNotifierRef
     = AutoDisposeProviderRef<PressedContinueUseCase>;
+String _$exitGamePageUseCaseNotifierHash() =>
+    r'3b436cf277b87b60b544ca7390798c60aea34821';
+
+/// See also [exitGamePageUseCaseNotifier].
+@ProviderFor(exitGamePageUseCaseNotifier)
+final exitGamePageUseCaseNotifierProvider =
+    AutoDisposeProvider<ExitGamePageUseCase>.internal(
+  exitGamePageUseCaseNotifier,
+  name: r'exitGamePageUseCaseNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$exitGamePageUseCaseNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ExitGamePageUseCaseNotifierRef
+    = AutoDisposeProviderRef<ExitGamePageUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memopize/application/di/usecases.dart';
+import 'package:memopize/domain/types/constants.dart';
+import 'package:memopize/infrastructure/sqlite/const_data_db_helper.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 
@@ -15,24 +17,35 @@ class SelectPage extends ConsumerWidget {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: ['pi', 'e', 'sqrt2'].map(
-              (constName) {
-                return ElevatedButton(
+            children: [
+              TextButton(
                   onPressed: () async {
-                    final usecase = ref
-                        .read(loadConstDataUseCaseNotifierProvider(constName));
-                    await usecase.loadConstData();
-                    final router = ref.read(goRouterProvider);
-                    router.goNamed(
-                      PageId.game.routeName,
-                      pathParameters: {'constName': constName},
+                    final data = await ConstValueDBHelper.getConstData('pi');
+                    debugPrint('pi: ${data.highscore}');
+                  },
+                  child: const Text("get const data")),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: Constants.values.map(
+                  (constant) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        final usecase = ref.read(
+                            loadConstValueUseCaseNotifierProvider(
+                                constant.path));
+                        await usecase.loadConstValue();
+                        final router = ref.read(goRouterProvider);
+                        router.goNamed(
+                          PageId.game.routeName,
+                          pathParameters: {'constPath': constant.path},
+                        );
+                      },
+                      child: Text('Game Page (${constant.path})'),
                     );
                   },
-                  child: Text('Game Page (${constName})'),
-                );
-              },
-            ).toList(),
+                ).toList(),
+              ),
+            ],
           ),
         ));
   }

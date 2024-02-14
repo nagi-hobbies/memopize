@@ -1,17 +1,17 @@
 import 'package:memopize/application/state/s_const_data.dart';
-import 'package:memopize/infrastructure/dataloader/const_data_loader.dart';
+import 'package:memopize/infrastructure/assets/const_value_loader.dart';
 
-class LoadConstDataUseCase {
-  LoadConstDataUseCase({
-    required this.sConstDataNotifier,
+class LoadConstValueUseCase {
+  LoadConstValueUseCase({
+    required this.sConstValueNotifier,
     required this.constName,
   });
-  final SConstDataNotifier sConstDataNotifier;
+  final SConstValueNotifier sConstValueNotifier;
   final String constName;
 
-  Future<void> loadConstData() async {
-    final ConstDataLoader loader = ConstDataLoader();
-    final String data = await loader.getInitData(constName);
-    sConstDataNotifier.add(data);
+  Future<void> loadConstValue() async {
+    final ConstValueLoader loader = ConstValueLoader();
+    final String data = await loader.getInitValue(constName);
+    sConstValueNotifier.add(data);
   }
 }
