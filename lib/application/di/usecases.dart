@@ -1,11 +1,10 @@
 // usecaseをriverpodによりDIしながら，どこからでも呼び出せるようにする
 
-import 'package:memopize/application/state/s_const_data.dart';
+import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
-import 'package:memopize/application/state/s_play_settings.dart';
 import 'package:memopize/application/state/s_score.dart';
-import 'package:memopize/application/usecases/load_const_data.dart';
+import 'package:memopize/application/usecases/start_game_session.dart';
 import 'package:memopize/application/usecases/pressed_continue.dart';
 import 'package:memopize/application/usecases/pressed_num.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,25 +13,24 @@ import 'package:memopize/application/usecases/exit_gamepage.dart';
 part 'usecases.g.dart';
 
 @riverpod
-LoadConstValueUseCase loadConstValueUseCaseNotifier(ref, String constName) {
-  return LoadConstValueUseCase(
-      sConstValueNotifier: ref.read(sConstValueNotifierProvider.notifier),
+StartGameSessionUseCase startGameSessionUseCase(ref, String constName) {
+  return StartGameSessionUseCase(
+      sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
       constName: constName);
 }
 
 @riverpod
-PressedNumUseCase pressedNumUseCaseNotifier(ref) {
+PressedNumUseCase pressedNumUseCase(ref) {
   return PressedNumUseCase(
     openDigitsNumNotifier: ref.read(sOpenDigitsNumNotifierProvider.notifier),
-    constValueNotifier: ref.read(sConstValueNotifierProvider.notifier),
     isWaitingInputNotifier: ref.read(sIsWaitingInputNotifierProvider.notifier),
-    playSettingsNotifier: ref.read(sPlaySettingsNotifierProvider.notifier),
+    sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
     scoreNotifier: ref.read(sScoreNotifierProvider.notifier),
   );
 }
 
 @riverpod
-PressedContinueUseCase pressedContinueUseCaseNotifier(ref) {
+PressedContinueUseCase pressedContinueUseCase(ref) {
   return PressedContinueUseCase(
     sScoreNotifier: ref.read(sScoreNotifierProvider.notifier),
     sIsWaitingInputNotifier: ref.read(sIsWaitingInputNotifierProvider.notifier),
@@ -41,6 +39,9 @@ PressedContinueUseCase pressedContinueUseCaseNotifier(ref) {
 }
 
 @riverpod
-ExitGamePageUseCase exitGamePageUseCaseNotifier(ref) {
-  return ExitGamePageUseCase();
+ExitGamePageUseCase exitGamePageUseCase(ref) {
+  return ExitGamePageUseCase(
+    sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
+    sScoreNotifier: ref.read(sScoreNotifierProvider.notifier),
+  );
 }

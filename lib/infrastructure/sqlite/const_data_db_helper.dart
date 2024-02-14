@@ -20,7 +20,7 @@ class ConstValueDBHelper {
             )
             .then((value) => Constants.values.forEach((constant) {
                   db.insert(_TABLE_NAME, <String, dynamic>{
-                    'path': constant.path,
+                    'path': constant.tex,
                     'highscore': 0,
                   });
                 }));
@@ -29,34 +29,34 @@ class ConstValueDBHelper {
     );
   }
 
-  static Future<void> updateHighscore(String constPath, int highscore) async {
+  static Future<void> updateHighscore(String constName, int highscore) async {
     final Database db = await _openDB();
     await db.update(
       _TABLE_NAME,
       <String, dynamic>{
-        'path': constPath,
+        'path': constName,
         'highscore': highscore,
       },
       where: 'path = ?',
-      whereArgs: [constPath],
+      whereArgs: [constName],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     await db.close();
   }
 
-  static Future<ConstData> getConstData(String constPath) async {
+  static Future<ConstData> getConstData(String constName) async {
     final Database db = await _openDB();
     final List<Map<String, dynamic>> maps = await db.query(
       _TABLE_NAME,
       columns: ['path', 'highscore'],
       where: 'path = ?',
-      whereArgs: [constPath],
+      whereArgs: [constName],
     );
     await db.close();
     if (maps.isEmpty) {
-      return ConstData(path: constPath, highscore: 0);
+      return ConstData(name: constName, highscore: 0);
     }
-    return ConstData(path: maps[0]['path'], highscore: maps[0]['highscore']);
+    return ConstData(name: maps[0]['path'], highscore: maps[0]['highscore']);
   }
 
   static Future<List<Map<String, dynamic>>> getAllTableinDB() async {

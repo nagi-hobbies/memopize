@@ -6,8 +6,8 @@ part of 'usecases.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loadConstValueUseCaseNotifierHash() =>
-    r'199ed5e4495dff76a76c4c0b5a994ff4eb94ec43';
+String _$startGameSessionUseCaseHash() =>
+    r'16431572a1b947359dfabce184c5559d7ab3f556';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,29 +30,27 @@ class _SystemHash {
   }
 }
 
-/// See also [loadConstValueUseCaseNotifier].
-@ProviderFor(loadConstValueUseCaseNotifier)
-const loadConstValueUseCaseNotifierProvider =
-    LoadConstValueUseCaseNotifierFamily();
+/// See also [startGameSessionUseCase].
+@ProviderFor(startGameSessionUseCase)
+const startGameSessionUseCaseProvider = StartGameSessionUseCaseFamily();
 
-/// See also [loadConstValueUseCaseNotifier].
-class LoadConstValueUseCaseNotifierFamily
-    extends Family<LoadConstValueUseCase> {
-  /// See also [loadConstValueUseCaseNotifier].
-  const LoadConstValueUseCaseNotifierFamily();
+/// See also [startGameSessionUseCase].
+class StartGameSessionUseCaseFamily extends Family<StartGameSessionUseCase> {
+  /// See also [startGameSessionUseCase].
+  const StartGameSessionUseCaseFamily();
 
-  /// See also [loadConstValueUseCaseNotifier].
-  LoadConstValueUseCaseNotifierProvider call(
+  /// See also [startGameSessionUseCase].
+  StartGameSessionUseCaseProvider call(
     String constName,
   ) {
-    return LoadConstValueUseCaseNotifierProvider(
+    return StartGameSessionUseCaseProvider(
       constName,
     );
   }
 
   @override
-  LoadConstValueUseCaseNotifierProvider getProviderOverride(
-    covariant LoadConstValueUseCaseNotifierProvider provider,
+  StartGameSessionUseCaseProvider getProviderOverride(
+    covariant StartGameSessionUseCaseProvider provider,
   ) {
     return call(
       provider.constName,
@@ -71,33 +69,33 @@ class LoadConstValueUseCaseNotifierFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'loadConstValueUseCaseNotifierProvider';
+  String? get name => r'startGameSessionUseCaseProvider';
 }
 
-/// See also [loadConstValueUseCaseNotifier].
-class LoadConstValueUseCaseNotifierProvider
-    extends AutoDisposeProvider<LoadConstValueUseCase> {
-  /// See also [loadConstValueUseCaseNotifier].
-  LoadConstValueUseCaseNotifierProvider(
+/// See also [startGameSessionUseCase].
+class StartGameSessionUseCaseProvider
+    extends AutoDisposeProvider<StartGameSessionUseCase> {
+  /// See also [startGameSessionUseCase].
+  StartGameSessionUseCaseProvider(
     String constName,
   ) : this._internal(
-          (ref) => loadConstValueUseCaseNotifier(
-            ref as LoadConstValueUseCaseNotifierRef,
+          (ref) => startGameSessionUseCase(
+            ref as StartGameSessionUseCaseRef,
             constName,
           ),
-          from: loadConstValueUseCaseNotifierProvider,
-          name: r'loadConstValueUseCaseNotifierProvider',
+          from: startGameSessionUseCaseProvider,
+          name: r'startGameSessionUseCaseProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$loadConstValueUseCaseNotifierHash,
-          dependencies: LoadConstValueUseCaseNotifierFamily._dependencies,
+                  : _$startGameSessionUseCaseHash,
+          dependencies: StartGameSessionUseCaseFamily._dependencies,
           allTransitiveDependencies:
-              LoadConstValueUseCaseNotifierFamily._allTransitiveDependencies,
+              StartGameSessionUseCaseFamily._allTransitiveDependencies,
           constName: constName,
         );
 
-  LoadConstValueUseCaseNotifierProvider._internal(
+  StartGameSessionUseCaseProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -111,13 +109,13 @@ class LoadConstValueUseCaseNotifierProvider
 
   @override
   Override overrideWith(
-    LoadConstValueUseCase Function(LoadConstValueUseCaseNotifierRef provider)
+    StartGameSessionUseCase Function(StartGameSessionUseCaseRef provider)
         create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: LoadConstValueUseCaseNotifierProvider._internal(
-        (ref) => create(ref as LoadConstValueUseCaseNotifierRef),
+      override: StartGameSessionUseCaseProvider._internal(
+        (ref) => create(ref as StartGameSessionUseCaseRef),
         from: from,
         name: null,
         dependencies: null,
@@ -129,13 +127,13 @@ class LoadConstValueUseCaseNotifierProvider
   }
 
   @override
-  AutoDisposeProviderElement<LoadConstValueUseCase> createElement() {
-    return _LoadConstValueUseCaseNotifierProviderElement(this);
+  AutoDisposeProviderElement<StartGameSessionUseCase> createElement() {
+    return _StartGameSessionUseCaseProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is LoadConstValueUseCaseNotifierProvider &&
+    return other is StartGameSessionUseCaseProvider &&
         other.constName == constName;
   }
 
@@ -148,75 +146,71 @@ class LoadConstValueUseCaseNotifierProvider
   }
 }
 
-mixin LoadConstValueUseCaseNotifierRef
-    on AutoDisposeProviderRef<LoadConstValueUseCase> {
+mixin StartGameSessionUseCaseRef
+    on AutoDisposeProviderRef<StartGameSessionUseCase> {
   /// The parameter `constName` of this provider.
   String get constName;
 }
 
-class _LoadConstValueUseCaseNotifierProviderElement
-    extends AutoDisposeProviderElement<LoadConstValueUseCase>
-    with LoadConstValueUseCaseNotifierRef {
-  _LoadConstValueUseCaseNotifierProviderElement(super.provider);
+class _StartGameSessionUseCaseProviderElement
+    extends AutoDisposeProviderElement<StartGameSessionUseCase>
+    with StartGameSessionUseCaseRef {
+  _StartGameSessionUseCaseProviderElement(super.provider);
 
   @override
-  String get constName =>
-      (origin as LoadConstValueUseCaseNotifierProvider).constName;
+  String get constName => (origin as StartGameSessionUseCaseProvider).constName;
 }
 
-String _$pressedNumUseCaseNotifierHash() =>
-    r'6f80d259250617d541bca0eb0f2ce3c6007e4ab3';
+String _$pressedNumUseCaseHash() => r'b68c8ae7f270011d0e2311bb38dafe8738914084';
 
-/// See also [pressedNumUseCaseNotifier].
-@ProviderFor(pressedNumUseCaseNotifier)
-final pressedNumUseCaseNotifierProvider =
+/// See also [pressedNumUseCase].
+@ProviderFor(pressedNumUseCase)
+final pressedNumUseCaseProvider =
     AutoDisposeProvider<PressedNumUseCase>.internal(
-  pressedNumUseCaseNotifier,
-  name: r'pressedNumUseCaseNotifierProvider',
+  pressedNumUseCase,
+  name: r'pressedNumUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$pressedNumUseCaseNotifierHash,
+      : _$pressedNumUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PressedNumUseCaseNotifierRef
-    = AutoDisposeProviderRef<PressedNumUseCase>;
-String _$pressedContinueUseCaseNotifierHash() =>
-    r'0c4c6dbc318352e1c52305ee9347bd21c56d41ee';
+typedef PressedNumUseCaseRef = AutoDisposeProviderRef<PressedNumUseCase>;
+String _$pressedContinueUseCaseHash() =>
+    r'f287e56071f4b7f128a5d02195d3962988ebd854';
 
-/// See also [pressedContinueUseCaseNotifier].
-@ProviderFor(pressedContinueUseCaseNotifier)
-final pressedContinueUseCaseNotifierProvider =
+/// See also [pressedContinueUseCase].
+@ProviderFor(pressedContinueUseCase)
+final pressedContinueUseCaseProvider =
     AutoDisposeProvider<PressedContinueUseCase>.internal(
-  pressedContinueUseCaseNotifier,
-  name: r'pressedContinueUseCaseNotifierProvider',
+  pressedContinueUseCase,
+  name: r'pressedContinueUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$pressedContinueUseCaseNotifierHash,
+      : _$pressedContinueUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PressedContinueUseCaseNotifierRef
+typedef PressedContinueUseCaseRef
     = AutoDisposeProviderRef<PressedContinueUseCase>;
-String _$exitGamePageUseCaseNotifierHash() =>
-    r'3b436cf277b87b60b544ca7390798c60aea34821';
+String _$exitGamePageUseCaseHash() =>
+    r'c6ed9c16c2c83b4a80f243a3ca9e15c25d23a357';
 
-/// See also [exitGamePageUseCaseNotifier].
-@ProviderFor(exitGamePageUseCaseNotifier)
-final exitGamePageUseCaseNotifierProvider =
+/// See also [exitGamePageUseCase].
+@ProviderFor(exitGamePageUseCase)
+final exitGamePageUseCaseProvider =
     AutoDisposeProvider<ExitGamePageUseCase>.internal(
-  exitGamePageUseCaseNotifier,
-  name: r'exitGamePageUseCaseNotifierProvider',
+  exitGamePageUseCase,
+  name: r'exitGamePageUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$exitGamePageUseCaseNotifierHash,
+      : _$exitGamePageUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ExitGamePageUseCaseNotifierRef
-    = AutoDisposeProviderRef<ExitGamePageUseCase>;
+typedef ExitGamePageUseCaseRef = AutoDisposeProviderRef<ExitGamePageUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
