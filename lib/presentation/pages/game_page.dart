@@ -4,8 +4,6 @@ import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_score.dart';
-import 'package:memopize/domain/types/const_data.dart';
-import 'package:memopize/infrastructure/sqlite/const_data_db_helper.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 import 'package:memopize/presentation/widgets/consts_listview.dart';

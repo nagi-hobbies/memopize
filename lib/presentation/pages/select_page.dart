@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/domain/types/constants.dart';
-import 'package:memopize/infrastructure/sqlite/const_data_db_helper.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 

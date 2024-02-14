@@ -21,11 +21,10 @@ class StartGameSessionUseCase {
     final String data = await loader.getInitValue(constName);
     final ConstData constData =
         await ConstValueDBHelper.getConstData(constName);
+    final newSGameSession = sGameSessionNotifier.value.copyWith(
+        constName: constName, constValue: data, highscore: constData.highscore);
     sGameSessionNotifier.set(
-      sGameSessionNotifier.value.copyWith(
-          constName: constName,
-          constValue: data,
-          highscore: constData.highscore),
+      newSGameSession,
     );
   }
 }
