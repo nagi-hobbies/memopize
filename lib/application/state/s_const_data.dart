@@ -2,12 +2,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 's_const_data.g.dart';
 
-/// [SConstDataNotifier]は、数字の配列の状態を管理するためのNotifierです。
+/// [SConstValueNotifier]は、定数の値を保持する
 @Riverpod(keepAlive: true)
-class SConstDataNotifier extends _$SConstDataNotifier {
+class SConstValueNotifier extends _$SConstValueNotifier {
   @override
   String build() {
-    // return List<String>.empty(growable: true);
     return '';
   }
 
@@ -16,7 +15,6 @@ class SConstDataNotifier extends _$SConstDataNotifier {
   /// [digit] 追加する数字
   void add(String digit) {
     state += digit;
-    // debugPrint('value: $state, digit: $digit at SConstDataNotifier.add()');
   }
 
   void clear() {

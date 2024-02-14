@@ -5,9 +5,6 @@ import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/presentation/widgets/strict_button.dart';
 
 class StrictButtonPanel extends ConsumerWidget {
-  final double w = 80;
-  final double h = 80;
-
   /// strict mode での数字ボタンパネル
   const StrictButtonPanel({super.key});
 
@@ -21,41 +18,84 @@ class StrictButtonPanel extends ConsumerWidget {
       usecase.pressedNum(pressedNum);
     }
 
-    return SizedBox(
-      width: w * 3,
-      height: h * 4,
-      child: GridView.count(
-          physics: const NeverScrollableScrollPhysics(), // scroll禁止
-          crossAxisCount: 3,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
+    return Column(children: [
+      ...List.generate(
+          3,
+          (colInd) => Expanded(
+                  child: FractionallySizedBox(
+                child: Row(
+                    children: List.generate(
+                        3,
+                        (rowInd) => Expanded(
+                                child: SizedBox(
+                              height: double.infinity,
+                              child: StrictButton(
+                                onPressed: isWaitingInput
+                                    ? () => onPressed(colInd * 3 + rowInd + 1)
+                                    : null,
+                                number: colInd * 3 + rowInd + 1,
+                              ),
+                            )))),
+              ))),
+      Expanded(
+        child: Row(
           children: [
-            ...List.generate(
-                9,
-                (index) => SizedBox(
-                      width: w,
-                      height: h,
-                      child: StrictButton(
-                          onPressed: isWaitingInput
-                              ? () => onPressed(index + 1)
-                              : null,
-                          number: index + 1),
-                    )),
-            SizedBox(
-              width: w,
-              height: h,
+            const Expanded(
+              child: SizedBox(
+                height: double.infinity,
+              ),
             ),
-            SizedBox(
-                width: w,
-                height: h,
+            Expanded(
+              child: SizedBox(
+                height: double.infinity,
                 child: StrictButton(
-                    onPressed: isWaitingInput ? () => onPressed(0) : null,
-                    number: 0)),
-            SizedBox(
-              width: w,
-              height: h,
-            )
-          ]),
-    );
+                  onPressed: isWaitingInput ? () => onPressed(0) : null,
+                  number: 0,
+                ),
+              ),
+            ),
+            const Expanded(
+              child: SizedBox(
+                height: double.infinity,
+              ),
+            ),
+          ],
+        ),
+      )
+    ]);
+
+    // GridView.count(
+    //     padding: const EdgeInsets.all(10),
+    //     physics: const NeverScrollableScrollPhysics(), // scroll禁止
+    //     // crossAxisCount: 3,
+
+    //     mainAxisSpacing: 10,
+    //     crossAxisSpacing: 10,
+    //     children: [
+    //       ...List.generate(
+    //           9,
+    //           (index) => SizedBox(
+    //                 // width: w,
+    //                 // height: h,
+    //                 child: StrictButton(
+    //                     onPressed:
+    //                         isWaitingInput ? () => onPressed(index + 1) : null,
+    //                     number: index + 1),
+    //               )),
+    //       SizedBox(
+    //           // width: w,
+    //           // height: h,
+    //           ),
+    //       SizedBox(
+    //           // width: w,
+    //           // height: h,
+    //           child: StrictButton(
+    //               onPressed: isWaitingInput ? () => onPressed(0) : null,
+    //               number: 0)),
+    //       SizedBox(
+    //           // width: w,
+    //           // height: h,
+    //           )
+    //     ]);
   }
 }

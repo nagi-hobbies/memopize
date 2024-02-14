@@ -17,10 +17,10 @@ class ConstsListView extends HookConsumerWidget {
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
     final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
 
-    final constData = ref.watch(sConstDataNotifierProvider);
+    final constData = ref.watch(sConstValueNotifierProvider);
     final score = ref.watch(sScoreNotifierProvider);
     final listView = ListView.separated(
-        itemCount: constData.length != 0
+        itemCount: constData.isNotEmpty
             ? constData.split('.')[1].length ~/ playSettings.rowLength + 1
             : 0,
         separatorBuilder: (BuildContext context, int index) => const Divider(),
