@@ -12,14 +12,15 @@ import 'package:memopize/presentation/widgets/strict_button_panel.dart';
 import '../widgets/rnd_button.dart';
 
 class GamePage extends ConsumerWidget {
-  const GamePage({super.key, required this.constName});
-  final String constName;
+  const GamePage({super.key, required this.constId});
+  final String constId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isWaitingInput = ref.watch(sIsWaitingInputNotifierProvider);
     final score = ref.watch(sScoreNotifierProvider);
-    final highscore = ref.watch(sGameSessionNotifierProvider).highscore;
+    final highscore =
+        ref.watch(sGameSessionNotifierProvider).displayConstData.highscore;
     return Scaffold(
         body: Container(
             alignment: Alignment.topCenter,

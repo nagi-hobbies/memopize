@@ -7,7 +7,7 @@ part of 'usecases.dart';
 // **************************************************************************
 
 String _$startGameSessionUseCaseHash() =>
-    r'16431572a1b947359dfabce184c5559d7ab3f556';
+    r'f05a940ce41af3816a30be19332bcbafd8eb25ae';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -41,10 +41,10 @@ class StartGameSessionUseCaseFamily extends Family<StartGameSessionUseCase> {
 
   /// See also [startGameSessionUseCase].
   StartGameSessionUseCaseProvider call(
-    String constName,
+    int constId,
   ) {
     return StartGameSessionUseCaseProvider(
-      constName,
+      constId,
     );
   }
 
@@ -53,7 +53,7 @@ class StartGameSessionUseCaseFamily extends Family<StartGameSessionUseCase> {
     covariant StartGameSessionUseCaseProvider provider,
   ) {
     return call(
-      provider.constName,
+      provider.constId,
     );
   }
 
@@ -77,11 +77,11 @@ class StartGameSessionUseCaseProvider
     extends AutoDisposeProvider<StartGameSessionUseCase> {
   /// See also [startGameSessionUseCase].
   StartGameSessionUseCaseProvider(
-    String constName,
+    int constId,
   ) : this._internal(
           (ref) => startGameSessionUseCase(
             ref as StartGameSessionUseCaseRef,
-            constName,
+            constId,
           ),
           from: startGameSessionUseCaseProvider,
           name: r'startGameSessionUseCaseProvider',
@@ -92,7 +92,7 @@ class StartGameSessionUseCaseProvider
           dependencies: StartGameSessionUseCaseFamily._dependencies,
           allTransitiveDependencies:
               StartGameSessionUseCaseFamily._allTransitiveDependencies,
-          constName: constName,
+          constId: constId,
         );
 
   StartGameSessionUseCaseProvider._internal(
@@ -102,10 +102,10 @@ class StartGameSessionUseCaseProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.constName,
+    required this.constId,
   }) : super.internal();
 
-  final String constName;
+  final int constId;
 
   @override
   Override overrideWith(
@@ -121,7 +121,7 @@ class StartGameSessionUseCaseProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        constName: constName,
+        constId: constId,
       ),
     );
   }
@@ -133,14 +133,13 @@ class StartGameSessionUseCaseProvider
 
   @override
   bool operator ==(Object other) {
-    return other is StartGameSessionUseCaseProvider &&
-        other.constName == constName;
+    return other is StartGameSessionUseCaseProvider && other.constId == constId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, constName.hashCode);
+    hash = _SystemHash.combine(hash, constId.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -148,8 +147,8 @@ class StartGameSessionUseCaseProvider
 
 mixin StartGameSessionUseCaseRef
     on AutoDisposeProviderRef<StartGameSessionUseCase> {
-  /// The parameter `constName` of this provider.
-  String get constName;
+  /// The parameter `constId` of this provider.
+  int get constId;
 }
 
 class _StartGameSessionUseCaseProviderElement
@@ -158,7 +157,7 @@ class _StartGameSessionUseCaseProviderElement
   _StartGameSessionUseCaseProviderElement(super.provider);
 
   @override
-  String get constName => (origin as StartGameSessionUseCaseProvider).constName;
+  int get constId => (origin as StartGameSessionUseCaseProvider).constId;
 }
 
 String _$pressedNumUseCaseHash() => r'b68c8ae7f270011d0e2311bb38dafe8738914084';
@@ -196,7 +195,7 @@ final pressedContinueUseCaseProvider =
 typedef PressedContinueUseCaseRef
     = AutoDisposeProviderRef<PressedContinueUseCase>;
 String _$exitGamePageUseCaseHash() =>
-    r'c6ed9c16c2c83b4a80f243a3ca9e15c25d23a357';
+    r'd29d845a541b408bf4c6748c216be3782a0b5083';
 
 /// See also [exitGamePageUseCase].
 @ProviderFor(exitGamePageUseCase)

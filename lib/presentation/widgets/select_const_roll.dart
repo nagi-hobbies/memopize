@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:memopize/domain/types/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/presentation/widgets/tex_text.dart';
 
-class SelectConstRoll extends StatelessWidget {
+class SelectConstRoll extends ConsumerWidget {
   const SelectConstRoll(
       {super.key,
       required this.itemEtent,
@@ -14,7 +15,9 @@ class SelectConstRoll extends StatelessWidget {
   final ScrollController scrollController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final displayConstDataList =
+        ref.watch(sDisplayConstDataListNotifierProvider);
     return ListView(
       scrollDirection: Axis.horizontal,
       controller: scrollController,
@@ -28,8 +31,9 @@ class SelectConstRoll extends StatelessWidget {
               height: 100,
               child: Center(
                   child: TexText(
-                      tex: Constants
-                          .values[index % Constants.values.length].tex))),
+                tex: displayConstDataList[index % displayConstDataList.length]
+                    .tex,
+              ))),
         ),
       ),
     );

@@ -50,6 +50,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  json_serializable:
   freezed:
   riverpod_generator:
   build_runner:
@@ -78,6 +79,7 @@ flutter:
   assets:
     - assets/google_fonts/
     - assets/texts/const_data/
+    - assets/jsons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

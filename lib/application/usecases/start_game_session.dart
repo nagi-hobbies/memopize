@@ -1,5 +1,6 @@
+import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/application/state/s_game_session.dart';
-import 'package:memopize/domain/types/const_data.dart';
+import 'package:memopize/domain/types/display_const_data.dart';
 import 'package:memopize/infrastructure/assets/const_value_loader.dart';
 import 'package:memopize/infrastructure/sqlite/const_data_db_helper.dart';
 
@@ -7,22 +8,23 @@ import 'package:memopize/infrastructure/sqlite/const_data_db_helper.dart';
 class StartGameSessionUseCase {
   StartGameSessionUseCase({
     required this.sGameSessionNotifier,
-    required this.constName,
+    required this.sDisplayConstDataListNotifier,
+    required this.constId,
   });
   final SGameSessionNotifier sGameSessionNotifier;
-  final String constName;
+  final SDisplayConstDataListNotifier sDisplayConstDataListNotifier;
+  final int constId;
 
   Future<void> call() async {
     await _loadConstValue();
   }
 
   Future<void> _loadConstValue() async {
-    final ConstValueLoader loader = ConstValueLoader();
-    final String data = await loader.getInitValue(constName);
-    final ConstData constData =
-        await ConstValueDBHelper.getConstData(constName);
+    final value = await ConstValueDBHelper.getConstValue(constId);
     final newSGameSession = sGameSessionNotifier.value.copyWith(
-        constName: constName, constValue: data, highscore: constData.highscore);
+      displayConstData: sDisplayConstDataListNotifier.value[constId],
+      constValue: value,
+    );
     sGameSessionNotifier.set(
       newSGameSession,
     );

@@ -1,5 +1,6 @@
 // usecaseをriverpodによりDIしながら，どこからでも呼び出せるようにする
 
+import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
@@ -13,10 +14,13 @@ import 'package:memopize/application/usecases/exit_gamepage.dart';
 part 'usecases.g.dart';
 
 @riverpod
-StartGameSessionUseCase startGameSessionUseCase(ref, String constName) {
+StartGameSessionUseCase startGameSessionUseCase(ref, int constId) {
   return StartGameSessionUseCase(
-      sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
-      constName: constName);
+    sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
+    sDisplayConstDataListNotifier:
+        ref.read(sDisplayConstDataListNotifierProvider.notifier),
+    constId: constId,
+  );
 }
 
 @riverpod

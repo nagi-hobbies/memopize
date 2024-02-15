@@ -12,12 +12,12 @@ class ExitGamePageUseCase {
   final SScoreNotifier sScoreNotifier;
 
   Future<void> call() async {
-    final String constName = sGameSessionNotifier.value.constName;
-    final int highscore = sGameSessionNotifier.value.highscore;
+    final int constId = sGameSessionNotifier.value.displayConstData.id;
+    final int highscore = sGameSessionNotifier.value.displayConstData.highscore;
     final int score = sScoreNotifier.value; // 今回のゲームのスコア
 
     if (score > highscore) {
-      await ConstValueDBHelper.updateHighscore(constName, score);
+      await ConstValueDBHelper.updateHighscore(constId, score);
     }
   }
 }
