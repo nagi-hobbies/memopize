@@ -5,58 +5,58 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class ConstValueDBHelper {
-  static final String _DB_NAME = CONST_DATA_DB_NAME;
-  static final int _DB_VERSION = CONST_DATA_DB_VERSION;
-  static final dynamic _TABLE_NAME = CONST_DATA_DB_TABLE_NAME;
+  static final String _dbName = CONST_DATA_DB_NAME;
+  static final int _dbVersion = CONST_DATA_DB_VERSION;
+  static final dynamic _tableName = CONST_DATA_DB_TABLE_NAME;
   // static const String _TABLE_NAME = 'consts';
 
   static Future<Database> _openDB() async {
     return openDatabase(
-      join(await getDatabasesPath(), _DB_NAME),
+      join(await getDatabasesPath(), _dbName),
       onCreate: (db, version) {
         return db
             .execute(
-              "CREATE TABLE $_TABLE_NAME (id INTEGER PRIMARY KEY, path TEXT, highscore INTEGER)",
+              "CREATE TABLE $_tableName (id INTEGER PRIMARY KEY, name TEXT, highscore INTEGER)",
             )
             .then((value) => Constants.values.forEach((constant) {
-                  db.insert(_TABLE_NAME, <String, dynamic>{
-                    'path': constant.path,
+                  db.insert(_tableName, <String, dynamic>{
+                    'name': constant.name,
                     'highscore': 0,
                   });
                 }));
       },
-      version: _DB_VERSION,
+      version: _dbVersion,
     );
   }
 
-  static Future<void> updateHighscore(String constPath, int highscore) async {
+  static Future<void> updateHighscore(String constName, int highscore) async {
     final Database db = await _openDB();
     await db.update(
-      _TABLE_NAME,
+      _tableName,
       <String, dynamic>{
-        'path': constPath,
+        'name': constName,
         'highscore': highscore,
       },
-      where: 'path = ?',
-      whereArgs: [constPath],
+      where: 'name = ?',
+      whereArgs: [constName],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     await db.close();
   }
 
-  static Future<ConstData> getConstData(String constPath) async {
+  static Future<ConstData> getConstData(String constName) async {
     final Database db = await _openDB();
     final List<Map<String, dynamic>> maps = await db.query(
-      _TABLE_NAME,
-      columns: ['path', 'highscore'],
-      where: 'path = ?',
-      whereArgs: [constPath],
+      _tableName,
+      columns: ['name', 'highscore'],
+      where: 'name = ?',
+      whereArgs: [constName],
     );
     await db.close();
     if (maps.isEmpty) {
-      return ConstData(path: constPath, highscore: 0);
+      return ConstData(name: constName, highscore: 0);
     }
-    return ConstData(path: maps[0]['path'], highscore: maps[0]['highscore']);
+    return ConstData(name: maps[0]['name'], highscore: maps[0]['highscore']);
   }
 
   static Future<List<Map<String, dynamic>>> getAllTableinDB() async {
@@ -64,6 +64,14 @@ class ConstValueDBHelper {
     final Database db = await _openDB();
     final tables = await db
         .query('sqlite_master', where: 'type = ?', whereArgs: ['table']);
+    await db.close();
+    return tables;
+  }
+
+  //get all data in const table
+  static Future<List<Map<String, dynamic>>> getAllDataInTable() async {
+    final Database db = await _openDB();
+    final tables = await db.query(_tableName);
     await db.close();
     return tables;
   }

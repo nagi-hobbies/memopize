@@ -8,7 +8,7 @@ enum PageId {
 extension PagePath on PageId {
   String get path => switch (this) {
         PageId.select => '/select',
-        PageId.game => '/game/:constPath',
+        PageId.game => '/game/:constName',
       };
 }
 

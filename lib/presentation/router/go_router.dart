@@ -1,5 +1,4 @@
 import 'package:memopize/application/di/usecases.dart';
-import 'package:memopize/application/state/s_score.dart';
 import 'package:memopize/presentation/pages/game_page.dart';
 import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/router/page_path.dart';
@@ -9,21 +8,18 @@ import 'package:go_router/go_router.dart';
 part 'go_router.g.dart';
 
 @riverpod
-GoRouter goRouter(ref) {
-  String constPath = '';
+GoRouter goRouter(GoRouterRef ref) {
   final routes = [
     GoRoute(
       path: PageId.game.path,
       name: PageId.game.name,
       builder: (context, state) {
-        final constName = state.pathParameters['constPath']!;
-        constPath = constName;
-        return GamePage(constPath: constName);
+        final constName = state.pathParameters['constName']!;
+        return GamePage(constName: constName);
       },
       onExit: (context) async {
-        final usecase = ref.read(exitGamePageUseCaseNotifierProvider);
-        await usecase.call(
-            constPath, ref.read(sScoreNotifierProvider.notifier).value);
+        final usecase = ref.read(exitGamePageUseCaseProvider);
+        await usecase.call();
         return true;
       },
     ),

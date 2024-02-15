@@ -1,6 +1,6 @@
 class ConstData {
-  final String path;
+  final String name;
   final int highscore;
 
-  const ConstData({required this.path, required this.highscore});
+  const ConstData({required this.name, required this.highscore});
 }

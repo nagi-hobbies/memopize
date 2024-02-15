@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:memopize/application/state/s_const_data.dart';
+import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_score.dart';
-import 'package:memopize/domain/types/play_settings.dart';
+import 'package:memopize/domain/types/game_session.dart';
 import 'package:memopize/presentation/widgets/digits_row.dart';
-
-import '../../application/state/s_play_settings.dart';
 
 class ConstsListView extends HookConsumerWidget {
   /// 数字を表示するリストビュー
@@ -15,13 +13,13 @@ class ConstsListView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
-    final PlaySettings playSettings = ref.watch(sPlaySettingsNotifierProvider);
+    final GameSession gameSession = ref.watch(sGameSessionNotifierProvider);
 
-    final constData = ref.watch(sConstValueNotifierProvider);
+    final constValue = ref.watch(sGameSessionNotifierProvider).constValue;
     final score = ref.watch(sScoreNotifierProvider);
     final listView = ListView.separated(
-        itemCount: constData.isNotEmpty
-            ? constData.split('.')[1].length ~/ playSettings.rowLength + 1
+        itemCount: constValue.isNotEmpty
+            ? constValue.split('.')[1].length ~/ gameSession.rowLength + 1
             : 0,
         separatorBuilder: (BuildContext context, int index) => const Divider(),
         itemBuilder: (BuildContext context, int index) {
@@ -33,9 +31,9 @@ class ConstsListView extends HookConsumerWidget {
                 alignment: Alignment.center,
                 child: Center(
                     child: DigitsRow(
-                  digits: constData.split('.')[0],
+                  digits: constValue.split('.')[0],
                   colInd: 0,
-                  openDigitsNum: playSettings.rowLength,
+                  openDigitsNum: gameSession.rowLength,
                   score: score,
                 )));
           }
@@ -46,9 +44,9 @@ class ConstsListView extends HookConsumerWidget {
               alignment: Alignment.center,
               child: Center(
                   child: DigitsRow(
-                digits: constData.split('.')[1].substring(
-                    (index - 1) * playSettings.rowLength,
-                    index * playSettings.rowLength),
+                digits: constValue.split('.')[1].substring(
+                    (index - 1) * gameSession.rowLength,
+                    index * gameSession.rowLength),
                 colInd: index,
                 openDigitsNum: openDigitsNum,
                 score: score,

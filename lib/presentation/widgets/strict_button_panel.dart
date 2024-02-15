@@ -14,7 +14,7 @@ class StrictButtonPanel extends ConsumerWidget {
 
     // getOnPressedFunc
     void onPressed(int pressedNum) {
-      final usecase = ref.read(pressedNumUseCaseNotifierProvider);
+      final usecase = ref.read(pressedNumUseCaseProvider);
       usecase.pressedNum(pressedNum);
     }
 

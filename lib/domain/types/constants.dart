@@ -1,11 +1,12 @@
 enum Constants {
-  pi(name: r"\pi", path: "pi"),
-  e(name: r"e", path: "e"),
-  sqrt2(name: r"\sqrt{2}", path: "sqrt2"),
+  pi(name: 'pi', tex: r'\pi'),
+  e(name: 'e', tex: r'e'),
+  sqrt2(name: 'sqrt2', tex: r'\sqrt{2}'),
   ;
 
+  /// name = path
   final String name;
-  final String path;
+  final String tex;
 
-  const Constants({required this.name, required this.path});
+  const Constants({required this.name, required this.tex});
 }
