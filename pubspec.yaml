@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_svg:
+  tex:
   path:
   sqlite3_flutter_libs:
   sqflite_common_ffi: 
