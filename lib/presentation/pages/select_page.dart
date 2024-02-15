@@ -1,13 +1,8 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/application/state/s_display_const_data_list.dart';
-import 'package:memopize/infrastructure/assets/constants_json_helper.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 import 'package:memopize/presentation/widgets/select_const_roll.dart';

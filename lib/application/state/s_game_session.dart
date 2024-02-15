@@ -8,7 +8,7 @@ part 's_game_session.g.dart';
 class SGameSessionNotifier extends _$SGameSessionNotifier {
   @override
   GameSession build() {
-    return GameSession(
+    return const GameSession(
         displayConstData: DisplayConstData(
           id: 0,
           category: '',

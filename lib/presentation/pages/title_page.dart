@@ -22,6 +22,7 @@ class TitlePage extends HookConsumerWidget {
       displayConstDataList.then((value) {
         sDisplayConstDataListNotifier.set(value);
       });
+      return null;
     }, []);
     return Scaffold(
       appBar: AppBar(

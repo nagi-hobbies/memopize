@@ -10,7 +10,7 @@ class TexText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final texhelper = TeX();
-    final svg = texhelper.tex2svg('$tex');
+    final svg = texhelper.tex2svg(tex);
     return texhelper.success()
         ? SvgPicture.string(
             svg,

@@ -1,6 +1,7 @@
 {
     "constants":[
         {
+            "id":1,
             "category":"mathematical",
             "tex":"\\pi",
             "firstthree":"3.14",
@@ -12,6 +13,7 @@
             
         },
         {
+            "id":2,
             "category":"mathematical",
             "tex":"e",
             "firstthree":"2.71",
@@ -22,6 +24,7 @@
             "descriptionEn":"The base of the natural logarithm."
         },
         {
+            "id":3,
             "category":"mathematical",
             "tex":"\\phi",
             "firstthree":"1.61",
@@ -32,6 +35,7 @@
             "descriptionEn":"Ratio of the lengths of the sides of a square whose shorter side is one of the sides, such that when the square is cut out, it becomes a rectangle similar to the original."
         },
         {
+            "id":4,
             "category":"mathematical",
             "tex":"\\sqrt{2}",
             "firstthree":"1.41",
@@ -42,6 +46,7 @@
             "descriptionEn":"A number that becomes 2 when squared. Also known as the silver ratio."
         },
         {
+            "id":5,
             "category":"mathematical",
             "tex":"\\sqrt{3}",
             "firstthree":"1.73",

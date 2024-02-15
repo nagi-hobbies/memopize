@@ -47,5 +47,7 @@ ExitGamePageUseCase exitGamePageUseCase(ref) {
   return ExitGamePageUseCase(
     sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
     sScoreNotifier: ref.read(sScoreNotifierProvider.notifier),
+    sDisplayConstDataListNotifier:
+        ref.read(sDisplayConstDataListNotifierProvider.notifier),
   );
 }

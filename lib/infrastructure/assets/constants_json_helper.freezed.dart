@@ -170,6 +170,7 @@ InnerConstantsJsonHelper _$InnerConstantsJsonHelperFromJson(
 
 /// @nodoc
 mixin _$InnerConstantsJsonHelper {
+  int get id => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get tex => throw _privateConstructorUsedError;
   String get firstthree => throw _privateConstructorUsedError;
@@ -192,7 +193,8 @@ abstract class $InnerConstantsJsonHelperCopyWith<$Res> {
       _$InnerConstantsJsonHelperCopyWithImpl<$Res, InnerConstantsJsonHelper>;
   @useResult
   $Res call(
-      {String category,
+      {int id,
+      String category,
       String tex,
       String firstthree,
       String value,
@@ -216,6 +218,7 @@ class _$InnerConstantsJsonHelperCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? tex = null,
     Object? firstthree = null,
@@ -226,6 +229,10 @@ class _$InnerConstantsJsonHelperCopyWithImpl<$Res,
     Object? descriptionEn = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -272,7 +279,8 @@ abstract class _$$innerConstantsJsonHelperImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String category,
+      {int id,
+      String category,
       String tex,
       String firstthree,
       String value,
@@ -295,6 +303,7 @@ class __$$innerConstantsJsonHelperImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? tex = null,
     Object? firstthree = null,
@@ -305,6 +314,10 @@ class __$$innerConstantsJsonHelperImplCopyWithImpl<$Res>
     Object? descriptionEn = null,
   }) {
     return _then(_$innerConstantsJsonHelperImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -345,7 +358,8 @@ class __$$innerConstantsJsonHelperImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
   const _$innerConstantsJsonHelperImpl(
-      {required this.category,
+      {required this.id,
+      required this.category,
       required this.tex,
       required this.firstthree,
       required this.value,
@@ -357,6 +371,8 @@ class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
   factory _$innerConstantsJsonHelperImpl.fromJson(Map<String, dynamic> json) =>
       _$$innerConstantsJsonHelperImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String category;
   @override
@@ -376,7 +392,7 @@ class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
 
   @override
   String toString() {
-    return 'InnerConstantsJsonHelper(category: $category, tex: $tex, firstthree: $firstthree, value: $value, nameJa: $nameJa, nameEn: $nameEn, descriptionJa: $descriptionJa, descriptionEn: $descriptionEn)';
+    return 'InnerConstantsJsonHelper(id: $id, category: $category, tex: $tex, firstthree: $firstthree, value: $value, nameJa: $nameJa, nameEn: $nameEn, descriptionJa: $descriptionJa, descriptionEn: $descriptionEn)';
   }
 
   @override
@@ -384,6 +400,7 @@ class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$innerConstantsJsonHelperImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.tex, tex) || other.tex == tex) &&
@@ -400,8 +417,8 @@ class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, category, tex, firstthree, value,
-      nameJa, nameEn, descriptionJa, descriptionEn);
+  int get hashCode => Object.hash(runtimeType, id, category, tex, firstthree,
+      value, nameJa, nameEn, descriptionJa, descriptionEn);
 
   @JsonKey(ignore: true)
   @override
@@ -420,7 +437,8 @@ class _$innerConstantsJsonHelperImpl implements _innerConstantsJsonHelper {
 
 abstract class _innerConstantsJsonHelper implements InnerConstantsJsonHelper {
   const factory _innerConstantsJsonHelper(
-      {required final String category,
+      {required final int id,
+      required final String category,
       required final String tex,
       required final String firstthree,
       required final String value,
@@ -432,6 +450,8 @@ abstract class _innerConstantsJsonHelper implements InnerConstantsJsonHelper {
   factory _innerConstantsJsonHelper.fromJson(Map<String, dynamic> json) =
       _$innerConstantsJsonHelperImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get category;
   @override

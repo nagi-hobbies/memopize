@@ -16,6 +16,7 @@ class ConstantsJsonHelper with _$ConstantsJsonHelper {
 @freezed
 class InnerConstantsJsonHelper with _$InnerConstantsJsonHelper {
   const factory InnerConstantsJsonHelper({
+    required int id,
     required String category,
     required String tex,
     required String firstthree,

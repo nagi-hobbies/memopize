@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:memopize/application/config/database_config.dart';
 import 'package:memopize/domain/types/display_const_data.dart';
@@ -20,7 +19,9 @@ class ConstValueDBHelper {
       onCreate: (db, version) async {
         final json = await rootBundle.loadString('assets/jsons/constants.json');
         final map = jsonDecode(json);
-        final constants = ConstantsJsonHelper.fromJson(map).constants;
+        List<InnerConstantsJsonHelper> constants =
+            ConstantsJsonHelper.fromJson(map).constants.toList();
+        constants.sort((a, b) => a.id.compareTo(b.id));
         return db.execute(
           """CREATE TABLE $_tableName (
                 id INTEGER PRIMARY KEY,
@@ -35,52 +36,43 @@ class ConstValueDBHelper {
                 highscore INTEGER
               )
           """,
-        ).then((value) => constants.forEach((constant) {
-              db.insert(_tableName, <String, dynamic>{
-                'category': constant.category,
-                'tex': constant.tex,
-                'firstthree': constant.firstthree,
-                'value': constant.value,
-                'nameJa': constant.nameJa,
-                'nameEn': constant.nameEn,
-                'descriptionJa': constant.descriptionJa,
-                'descriptionEn': constant.descriptionEn,
-                'highscore': 0,
-              });
-            }));
+        ).then((value) => {
+              for (var constant in constants)
+                {
+                  db.insert(_tableName, <String, dynamic>{
+                    'category': constant.category,
+                    'tex': constant.tex,
+                    'firstthree': constant.firstthree,
+                    'value': constant.value,
+                    'nameJa': constant.nameJa,
+                    'nameEn': constant.nameEn,
+                    'descriptionJa': constant.descriptionJa,
+                    'descriptionEn': constant.descriptionEn,
+                    'highscore': 0,
+                  })
+                }
+            });
       },
       version: _dbVersion,
     );
-
-    // return db
-    //     .execute(
-    //       "CREATE TABLE $_tableName (id INTEGER PRIMARY KEY, name TEXT, highscore INTEGER)",
-    //     )
-    //     .then((value) => Constants.values.forEach((constant) {
-    //           db.insert(_tableName, <String, dynamic>{
-    //             'name': constant.name,
-    //             'highscore': 0,
-    //           });
-    //         }));
   }
 
   static Future<void> updateHighscore(int constId, int highscore) async {
     final Database db = await _openDB();
-    await db.update(
+    final a = await db.update(
       _tableName,
       <String, dynamic>{
-        'id': constId,
         'highscore': highscore,
       },
       where: 'id = ?',
-      whereArgs: [constId],
+      whereArgs: [constId + 1],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     await db.close();
   }
 
   static Future<DisplayConstData> getDisplayConstData(
-      String constId, String langage) async {
+      int constId, String langage) async {
     final Database db = await _openDB();
     final List<Map<String, dynamic>> maps = await db.query(
       _tableName,
@@ -96,7 +88,7 @@ class ConstValueDBHelper {
         'highscore'
       ],
       where: 'id = ?',
-      whereArgs: [constId],
+      whereArgs: [constId + 1],
     );
     await db.close();
     if (maps.isEmpty) {
@@ -150,7 +142,7 @@ class ConstValueDBHelper {
       _tableName,
       columns: ['value'],
       where: 'id = ?',
-      whereArgs: [constId],
+      whereArgs: [constId + 1], // テーブルのidは1から始まるが、リストのindexは0から始まるため、+1する
     );
     await db.close();
     if (maps.isEmpty) {
@@ -159,16 +151,6 @@ class ConstValueDBHelper {
     return maps[0]['value'];
   }
 
-  static Future<List<Map<String, dynamic>>> getAllTableinDB() async {
-    // get all table in db
-    final Database db = await _openDB();
-    final tables = await db
-        .query('sqlite_master', where: 'type = ?', whereArgs: ['table']);
-    await db.close();
-    return tables;
-  }
-
-  //get all data in const table
   static Future<List<Map<String, dynamic>>> getAllDataInTable() async {
     final Database db = await _openDB();
     final tables = await db.query(_tableName);
