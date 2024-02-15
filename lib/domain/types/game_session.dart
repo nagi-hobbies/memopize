@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:memopize/domain/types/display_const_data.dart';
 
 part 'game_session.freezed.dart';
 
@@ -7,9 +8,8 @@ part 'game_session.freezed.dart';
 @freezed
 class GameSession with _$GameSession {
   const factory GameSession({
-    required String constName,
+    required DisplayConstData displayConstData,
     required String constValue,
-    required int highscore, // ゲーム開始時時点でのハイスコア
     required int rowLength,
     required double digitFontSize,
   }) = _GameSession;

@@ -18,6 +18,7 @@ class ConstsListView extends HookConsumerWidget {
     final constValue = ref.watch(sGameSessionNotifierProvider).constValue;
     final score = ref.watch(sScoreNotifierProvider);
     final listView = ListView.separated(
+        clipBehavior: Clip.hardEdge,
         itemCount: constValue.isNotEmpty
             ? constValue.split('.')[1].length ~/ gameSession.rowLength + 1
             : 0,

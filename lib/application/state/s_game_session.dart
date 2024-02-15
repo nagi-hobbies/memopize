@@ -1,3 +1,4 @@
+import 'package:memopize/domain/types/display_const_data.dart';
 import 'package:memopize/domain/types/game_session.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,9 +9,16 @@ class SGameSessionNotifier extends _$SGameSessionNotifier {
   @override
   GameSession build() {
     return const GameSession(
-        constName: '',
+        displayConstData: DisplayConstData(
+          id: 0,
+          category: '',
+          tex: '',
+          firstthree: '',
+          name: '',
+          description: '',
+          highscore: 0,
+        ),
         constValue: '',
-        highscore: 0,
         rowLength: 10,
         digitFontSize: 40.0);
   }

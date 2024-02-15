@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameSession {
-  String get constName => throw _privateConstructorUsedError;
+  DisplayConstData get displayConstData => throw _privateConstructorUsedError;
   String get constValue => throw _privateConstructorUsedError;
-  int get highscore => throw _privateConstructorUsedError; // ゲーム開始時時点でのハイスコア
   int get rowLength => throw _privateConstructorUsedError;
   double get digitFontSize => throw _privateConstructorUsedError;
 
@@ -34,11 +33,12 @@ abstract class $GameSessionCopyWith<$Res> {
       _$GameSessionCopyWithImpl<$Res, GameSession>;
   @useResult
   $Res call(
-      {String constName,
+      {DisplayConstData displayConstData,
       String constValue,
-      int highscore,
       int rowLength,
       double digitFontSize});
+
+  $DisplayConstDataCopyWith<$Res> get displayConstData;
 }
 
 /// @nodoc
@@ -54,25 +54,20 @@ class _$GameSessionCopyWithImpl<$Res, $Val extends GameSession>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? constName = null,
+    Object? displayConstData = null,
     Object? constValue = null,
-    Object? highscore = null,
     Object? rowLength = null,
     Object? digitFontSize = null,
   }) {
     return _then(_value.copyWith(
-      constName: null == constName
-          ? _value.constName
-          : constName // ignore: cast_nullable_to_non_nullable
-              as String,
+      displayConstData: null == displayConstData
+          ? _value.displayConstData
+          : displayConstData // ignore: cast_nullable_to_non_nullable
+              as DisplayConstData,
       constValue: null == constValue
           ? _value.constValue
           : constValue // ignore: cast_nullable_to_non_nullable
               as String,
-      highscore: null == highscore
-          ? _value.highscore
-          : highscore // ignore: cast_nullable_to_non_nullable
-              as int,
       rowLength: null == rowLength
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
@@ -82,6 +77,14 @@ class _$GameSessionCopyWithImpl<$Res, $Val extends GameSession>
           : digitFontSize // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DisplayConstDataCopyWith<$Res> get displayConstData {
+    return $DisplayConstDataCopyWith<$Res>(_value.displayConstData, (value) {
+      return _then(_value.copyWith(displayConstData: value) as $Val);
+    });
   }
 }
 
@@ -94,11 +97,13 @@ abstract class _$$GameSessionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String constName,
+      {DisplayConstData displayConstData,
       String constValue,
-      int highscore,
       int rowLength,
       double digitFontSize});
+
+  @override
+  $DisplayConstDataCopyWith<$Res> get displayConstData;
 }
 
 /// @nodoc
@@ -112,25 +117,20 @@ class __$$GameSessionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? constName = null,
+    Object? displayConstData = null,
     Object? constValue = null,
-    Object? highscore = null,
     Object? rowLength = null,
     Object? digitFontSize = null,
   }) {
     return _then(_$GameSessionImpl(
-      constName: null == constName
-          ? _value.constName
-          : constName // ignore: cast_nullable_to_non_nullable
-              as String,
+      displayConstData: null == displayConstData
+          ? _value.displayConstData
+          : displayConstData // ignore: cast_nullable_to_non_nullable
+              as DisplayConstData,
       constValue: null == constValue
           ? _value.constValue
           : constValue // ignore: cast_nullable_to_non_nullable
               as String,
-      highscore: null == highscore
-          ? _value.highscore
-          : highscore // ignore: cast_nullable_to_non_nullable
-              as int,
       rowLength: null == rowLength
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
@@ -147,19 +147,15 @@ class __$$GameSessionImplCopyWithImpl<$Res>
 
 class _$GameSessionImpl implements _GameSession {
   const _$GameSessionImpl(
-      {required this.constName,
+      {required this.displayConstData,
       required this.constValue,
-      required this.highscore,
       required this.rowLength,
       required this.digitFontSize});
 
   @override
-  final String constName;
+  final DisplayConstData displayConstData;
   @override
   final String constValue;
-  @override
-  final int highscore;
-// ゲーム開始時時点でのハイスコア
   @override
   final int rowLength;
   @override
@@ -167,7 +163,7 @@ class _$GameSessionImpl implements _GameSession {
 
   @override
   String toString() {
-    return 'GameSession(constName: $constName, constValue: $constValue, highscore: $highscore, rowLength: $rowLength, digitFontSize: $digitFontSize)';
+    return 'GameSession(displayConstData: $displayConstData, constValue: $constValue, rowLength: $rowLength, digitFontSize: $digitFontSize)';
   }
 
   @override
@@ -175,12 +171,10 @@ class _$GameSessionImpl implements _GameSession {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameSessionImpl &&
-            (identical(other.constName, constName) ||
-                other.constName == constName) &&
+            (identical(other.displayConstData, displayConstData) ||
+                other.displayConstData == displayConstData) &&
             (identical(other.constValue, constValue) ||
                 other.constValue == constValue) &&
-            (identical(other.highscore, highscore) ||
-                other.highscore == highscore) &&
             (identical(other.rowLength, rowLength) ||
                 other.rowLength == rowLength) &&
             (identical(other.digitFontSize, digitFontSize) ||
@@ -189,7 +183,7 @@ class _$GameSessionImpl implements _GameSession {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, constName, constValue, highscore, rowLength, digitFontSize);
+      runtimeType, displayConstData, constValue, rowLength, digitFontSize);
 
   @JsonKey(ignore: true)
   @override
@@ -200,19 +194,16 @@ class _$GameSessionImpl implements _GameSession {
 
 abstract class _GameSession implements GameSession {
   const factory _GameSession(
-      {required final String constName,
+      {required final DisplayConstData displayConstData,
       required final String constValue,
-      required final int highscore,
       required final int rowLength,
       required final double digitFontSize}) = _$GameSessionImpl;
 
   @override
-  String get constName;
+  DisplayConstData get displayConstData;
   @override
   String get constValue;
   @override
-  int get highscore;
-  @override // ゲーム開始時時点でのハイスコア
   int get rowLength;
   @override
   double get digitFontSize;

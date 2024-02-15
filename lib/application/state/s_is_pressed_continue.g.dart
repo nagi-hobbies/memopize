@@ -9,7 +9,9 @@ part of 's_is_pressed_continue.dart';
 String _$sIsPressedContinueNotifierHash() =>
     r'7d6b5ace9f1b6ab6af50d6f7980a5471dd9004c3';
 
-/// See also [SIsPressedContinueNotifier].
+/// [SIsPressedContinueNotifier]は、continueボタンが押されたかどうかを保持する
+///
+/// Copied from [SIsPressedContinueNotifier].
 @ProviderFor(SIsPressedContinueNotifier)
 final sIsPressedContinueNotifierProvider =
     AutoDisposeNotifierProvider<SIsPressedContinueNotifier, bool>.internal(
