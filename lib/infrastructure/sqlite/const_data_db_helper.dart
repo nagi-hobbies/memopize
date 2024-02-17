@@ -59,7 +59,7 @@ class ConstValueDBHelper {
 
   static Future<void> updateHighscore(int constId, int highscore) async {
     final Database db = await _openDB();
-    final a = await db.update(
+    await db.update(
       _tableName,
       <String, dynamic>{
         'highscore': highscore,
