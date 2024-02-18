@@ -15,12 +15,13 @@ class TexText extends StatelessWidget {
         ? SvgPicture.string(
             svg,
             fit: BoxFit.contain,
-            colorFilter: ColorFilter.mode(
-                Theme.of(context).scaffoldBackgroundColor.computeLuminance() >
-                        0.5
-                    ? Colors.black
-                    : Colors.white,
-                BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+            // ColorFilter.mode(
+            //     Theme.of(context).scaffoldBackgroundColor.computeLuminance() >
+            //             0.5
+            //         ? Colors.black
+            //         : Colors.white,
+            //     BlendMode.srcIn),
           )
         : const CircularProgressIndicator();
   }

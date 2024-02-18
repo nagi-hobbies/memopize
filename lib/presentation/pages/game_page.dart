@@ -6,7 +6,7 @@ import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_score.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
-import 'package:memopize/presentation/widgets/consts_listview.dart';
+import 'package:memopize/presentation/widgets/consts_listview_h.dart';
 import 'package:memopize/presentation/widgets/strict_button_panel.dart';
 
 import '../widgets/rnd_button.dart';
@@ -51,10 +51,10 @@ class GamePage extends ConsumerWidget {
                       onPressed: () {
                         final router = ref.read(goRouterProvider);
                         router.goNamed(
-                          PageId.select.routeName,
+                          PageId.collection.routeName,
                         );
                       },
-                      child: const Text('Select Page')),
+                      child: const Text('Collection Page')),
                 ])));
   }
 }

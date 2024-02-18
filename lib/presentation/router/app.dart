@@ -18,7 +18,7 @@ class MyApp extends ConsumerWidget {
       routeInformationProvider: router.routeInformationProvider,
       debugShowCheckedModeBanner: false,
       theme: createThemeData(themeSeed, Brightness.light),
-      darkTheme: createThemeData(themeSeed, Brightness.dark),
+      // darkTheme: createThemeData(themeSeed, Brightness.dark),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:memopize/application/di/usecases.dart';
+import 'package:memopize/presentation/pages/collection_page.dart';
 import 'package:memopize/presentation/pages/game_page.dart';
 import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/pages/title_page.dart';
@@ -24,6 +25,12 @@ GoRouter goRouter(GoRouterRef ref) {
         return true;
       },
     ),
+    GoRoute(
+        path: PageId.collection.path,
+        name: PageId.collection.routeName,
+        builder: (context, state) {
+          return const CollectionPage();
+        }),
     GoRoute(
       path: PageId.select.path,
       name: PageId.select.routeName,
