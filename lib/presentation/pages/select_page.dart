@@ -40,7 +40,6 @@ class SelectPage extends HookConsumerWidget {
     scrollController.addListener(() {
       if (currConstInd.value != getIndexFromOffset(scrollController.position)) {
         currConstInd.value = getIndexFromOffset(scrollController.position);
-        debugPrint('currConstInd: ${currConstInd.value}');
         ref.read(sGameSessionNotifierProvider.notifier).set(
               gameSession.copyWith(
                   displayConstData: displayConstDataList[currConstInd.value]),

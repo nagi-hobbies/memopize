@@ -12,9 +12,19 @@ class StrictButton extends ConsumerWidget {
     return FractionallySizedBox(
       widthFactor: 0.9,
       heightFactor: 0.9,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(number.toString()),
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+                primary: Colors.white,
+                onPrimary: Colors.black,
+              ),
+        ),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          child: number == -1
+              ? Icon(Icons.play_arrow)
+              : Text(number.toString(), style: TextStyle(fontSize: 40)),
+        ),
       ),
     );
   }

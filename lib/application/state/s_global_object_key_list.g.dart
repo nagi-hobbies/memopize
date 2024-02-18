@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 's_game_session.dart';
+part of 's_global_object_key_list.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sGameSessionNotifierHash() =>
-    r'e50688a8529bd0dc9fa494746b4ce4fb9c26a85b';
+String _$globalObjectKeyListHash() =>
+    r'2a11f9ee436e086962746e3c7437d36ff70ebb00';
 
-/// See also [SGameSessionNotifier].
-@ProviderFor(SGameSessionNotifier)
-final sGameSessionNotifierProvider =
-    NotifierProvider<SGameSessionNotifier, GameSession>.internal(
-  SGameSessionNotifier.new,
-  name: r'sGameSessionNotifierProvider',
+/// See also [globalObjectKeyList].
+@ProviderFor(globalObjectKeyList)
+final globalObjectKeyListProvider =
+    AutoDisposeProvider<List<GlobalObjectKey<FlipCardState>>>.internal(
+  globalObjectKeyList,
+  name: r'globalObjectKeyListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$sGameSessionNotifierHash,
+      : _$globalObjectKeyListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SGameSessionNotifier = Notifier<GameSession>;
+typedef GlobalObjectKeyListRef
+    = AutoDisposeProviderRef<List<GlobalObjectKey<FlipCardState>>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

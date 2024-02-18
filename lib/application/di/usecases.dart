@@ -1,6 +1,7 @@
 // usecaseをriverpodによりDIしながら，どこからでも呼び出せるようにする
 
 import 'package:memopize/application/state/s_display_const_data_list.dart';
+import 'package:memopize/application/state/s_flip_card_controller.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
@@ -30,6 +31,7 @@ PressedNumUseCase pressedNumUseCase(ref) {
     isWaitingInputNotifier: ref.read(sIsWaitingInputNotifierProvider.notifier),
     sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
     scoreNotifier: ref.read(sScoreNotifierProvider.notifier),
+    flipCardControllerList: ref.read(flipCardControllerListProvider),
   );
 }
 

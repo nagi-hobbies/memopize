@@ -1,9 +1,11 @@
 import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:memopize/application/di/usecases.dart';
+import 'package:memopize/application/state/s_flip_card_controller.dart';
 import 'package:memopize/application/state/s_game_session.dart';
+import 'package:memopize/application/state/s_global_object_key_list.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_score.dart';
 import 'package:memopize/domain/types/game_session.dart';
@@ -19,12 +21,70 @@ class MemorizePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const itemExtent = 60.0;
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
     final score = ref.watch(sScoreNotifierProvider);
     final GameSession gameSession = ref.watch(sGameSessionNotifierProvider);
     final constValueBelow = gameSession.constValue.split('.')[1];
-    final cardKeyList = List.generate(
-        constValueBelow.length, (index) => GlobalKey<FlipCardState>());
+
+    // final controllerList = ref.watch(flipCardControllerListProvider);
+    final controllerList = useState(
+        List.generate(constValueBelow.length, (index) => FlipCardController()));
+
+    // final cardKeyList = List.generate(constValueBelow.length,
+    //     (index) => GlobalObjectKey<FlipCardState>('key$index'));
+
+    final globalObjectKeyList = ref.watch(globalObjectKeyListProvider);
+
+    final scrollController = ScrollController();
+
+    Color chooseColor(int digitInd) {
+      if (score < digitInd) {
+        return Colors.red;
+      } else if (score == digitInd) {
+        return Colors.orange;
+      } else {
+        return Colors.green;
+      }
+    }
+
+    scrollController.addListener(() {
+      debugPrint('scrollController');
+    });
+
+    useEffect(() {
+      for (int i = 0; i < constValueBelow.length; i++) {
+        if (globalObjectKeyList[i].currentState == null) {
+          continue;
+        }
+        // else if (globalObjectKeyList[i].controller == null) {
+        //   continue;
+        // }
+        final wheatherOpen = i < openDigitsNum;
+        final isOpend = !globalObjectKeyList[i].currentState!.isFront;
+        debugPrint(
+            'toggleCard $i, wheatherOpen: $wheatherOpen, isOpend: $isOpend');
+        if (wheatherOpen != isOpend) {
+          globalObjectKeyList[i].currentState!.toggleCard();
+        }
+        // if (controllerList.value[i].state == null) {
+        //   continue;
+        // } else if (controllerList.value[i].controller == null) {
+        //   continue;
+        // }
+
+        // final wheatherOpen = i < openDigitsNum;
+        // final isOpend = !controllerList.value[i].state!.isFront;
+        // debugPrint('wheatherOpen: $wheatherOpen, isOpend: $isOpend');
+        // if (wheatherOpen != isOpend) {
+        //   debugPrint('toggleCard $i');
+        //   controllerList.value[i].toggleCard();
+
+        //   debugPrint('${controllerList.value[i].state!.isFront}');
+        // }
+      }
+      return () {};
+    }, [openDigitsNum]);
 
     return Scaffold(
         appBar: AppBar(
@@ -41,6 +101,7 @@ class MemorizePage extends HookConsumerWidget {
                       const Text('Back', style: TextStyle(color: Colors.white)),
                   icon: const Icon(Icons.arrow_back, color: Colors.white)),
               const Text('Game'),
+              TextButton(onPressed: () {}, child: Text('1')),
             ],
           ),
         ),
@@ -48,7 +109,7 @@ class MemorizePage extends HookConsumerWidget {
         body: Column(
           children: [
             SizedBox(
-                height: 50,
+                height: 100,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -68,11 +129,16 @@ class MemorizePage extends HookConsumerWidget {
                   child: Row(
                     children: [
                       SizedBox(
-                          width: 20,
-                          height: 20,
+                          width: 80,
+                          height: 80,
                           child:
                               TexText(tex: gameSession.displayConstData.tex)),
-                      Text('Score: ${score}'),
+                      Text(
+                        'Score: ${score}',
+                      ),
+                      Text(
+                        'highScore: ${gameSession.displayConstData.highscore}',
+                      ),
                     ],
                   ),
                 )),
@@ -93,51 +159,207 @@ class MemorizePage extends HookConsumerWidget {
                   ),
                 ],
               ),
-              child: ListView(children: [
-                DigitCardsRow(children: [
-                  DigitCard(
-                    globalKey: GlobalKey<FlipCardState>(), //dammy
-                    digitText: gameSession.constValue.substring(0, 2),
-                    color: Colors.green.withOpacity(0.5),
-                    initSide: CardSide.BACK,
-                  ),
-                  ...List.generate(
-                    gameSession.rowLength,
-                    (rowId) => DigitCard(
-                      globalKey: cardKeyList[rowId],
-                      digitText: constValueBelow[rowId],
-                      color: openDigitsNum < gameSession.rowLength
-                          ? Colors.red.withOpacity(0.5)
-                          : Colors.green.withOpacity(0.5),
-                    ),
-                  )
-                ]),
-                ...List.generate(
-                    constValueBelow.length ~/ gameSession.rowLength - 1,
-                    (colId) => DigitCardsRow(children: [
-                          DigitCard(
-                            isDammy: true,
-                            globalKey: GlobalKey<FlipCardState>(),
-                            digitText: 'digitText',
-                            color: Colors.black,
-                            initSide: CardSide.BACK,
-                          ),
-                          ...List.generate(
+              child: AnimatedList(
+                  controller: scrollController,
+                  initialItemCount: 5,
+                  itemBuilder: (context, colId, animation) {
+                    if (colId == 0) {
+                      return DigitCardsRow(
+                          key: GlobalObjectKey('firstRow'),
+                          children: [
+                            DigitCard(
+                              // key: cardKeyList[0],
+                              id: -1,
+                              controller: FlipCardController(),
+                              digitText: gameSession.constValue.substring(0, 2),
+                              color: Colors.green,
+                              initSide: CardSide.BACK,
+                            ),
+                            ...List.generate(
                               gameSession.rowLength,
                               (rowId) => DigitCard(
-                                    globalKey: cardKeyList[
-                                        (colId + 1) * gameSession.rowLength +
-                                            rowId],
-                                    digitText: constValueBelow[
-                                        (colId + 1) * gameSession.rowLength +
-                                            rowId],
-                                    color: openDigitsNum < gameSession.rowLength
-                                        ? Colors.red.withOpacity(0.5)
-                                        : Colors.green.withOpacity(0.5),
-                                  )),
-                        ])),
-              ]),
+                                // key: cardKeyList[rowId],
+                                id: rowId,
+                                controller: controllerList.value[rowId],
+                                digitText: constValueBelow[rowId],
+                                color:
+                                    score < rowId ? Colors.red : Colors.green,
+                              ),
+                            )
+                          ]);
+                    } else {
+                      return DigitCardsRow(
+                          key: GlobalObjectKey('row$colId'),
+                          children: [
+                            DigitCard(
+                              isDammy: true,
+                              // key: cardKeyList[index],
+                              id: -1,
+                              controller: FlipCardController(),
+                              digitText: 'digitText',
+                              color: Colors.black,
+                              initSide: CardSide.BACK,
+                            ),
+                            ...List.generate(
+                                gameSession.rowLength,
+                                (rowId) => DigitCard(
+                                      key: GlobalObjectKey('row$colId$rowId'),
+                                      // key: cardKeyList[
+                                      //     (colId + 1) * gameSession.rowLength +
+                                      //         rowId],
+                                      // controller: controllerList.value.value[
+                                      //     (colId + 1) * gameSession.rowLength +
+                                      //         rowId],
+                                      // key: cardKeyList[
+                                      //     (index) * gameSession.rowLength +
+                                      //         rowId],
+                                      id: (colId) * gameSession.rowLength +
+                                          rowId,
+                                      controller: controllerList.value[
+                                          (colId) * gameSession.rowLength +
+                                              rowId],
+                                      digitText: constValueBelow[
+                                          (colId) * gameSession.rowLength +
+                                              rowId],
+                                      color: score <
+                                              (colId) * gameSession.rowLength +
+                                                  rowId
+                                          ? Colors.red
+                                          : Colors.green,
+                                    )),
+                          ]);
+                    }
+                  }),
+              // child: ListView.builder(
+              //     itemExtent: itemExtent,
+              //     controller: scrollController,
+              //     itemBuilder: (context, colId) {
+              //       if (colId == 0) {
+              //         return DigitCardsRow(
+              //             key: GlobalObjectKey('firstRow'),
+              //             children: [
+              //               DigitCard(
+              //                 id: -1,
+              //                 controller: FlipCardController(),
+              //                 digitText: gameSession.constValue.substring(0, 2),
+              //                 color: Colors.green,
+              //                 initSide: CardSide.BACK,
+              //               ),
+              //               ...List.generate(
+              //                 gameSession.rowLength,
+              //                 (rowId) => DigitCard(
+              //                   id: rowId,
+              //                   controller: controllerList.value[rowId],
+              //                   digitText: constValueBelow[rowId],
+              //                   color: chooseColor(
+              //                       (colId) * gameSession.rowLength + rowId),
+              //                 ),
+              //               )
+              //             ]);
+              //       } else {
+              //         return DigitCardsRow(
+              //             key: GlobalObjectKey('row$colId'),
+              //             children: [
+              //               DigitCard(
+              //                 id: -1,
+              //                 isDammy: true,
+              //                 // key: cardKeyList[index],
+              //                 controller: FlipCardController(),
+              //                 digitText: 'digitText',
+              //                 color: Colors.black,
+              //                 initSide: CardSide.BACK,
+              //               ),
+              //               ...List.generate(
+              //                   gameSession.rowLength,
+              //                   (rowId) => DigitCard(
+              //                         id: (colId) * gameSession.rowLength +
+              //                             rowId,
+              //                         // key: cardKeyList[
+              //                         //     (colId + 1) * gameSession.rowLength +
+              //                         //         rowId],
+              //                         // controller: controllerList.value.value[
+              //                         //     (colId + 1) * gameSession.rowLength +
+              //                         //         rowId],
+              //                         // key: cardKeyList[
+              //                         //     (index) * gameSession.rowLength +
+              //                         //         rowId],
+              //                         controller: controllerList.value[
+              //                             (colId) * gameSession.rowLength +
+              //                                 rowId],
+              //                         digitText: constValueBelow[
+              //                             (colId) * gameSession.rowLength +
+              //                                 rowId],
+              //                         color: chooseColor(
+              //                             (colId) * gameSession.rowLength +
+              //                                 rowId),
+              //                       )),
+              //             ]);
+              //       }
+              //     }),
+
+//p
+
+              //   child: ListView(children: [
+              //     DigitCardsRow(children: [
+              //       DigitCard(
+              //         controller: FlipCardController(),
+              //         digitText: gameSession.constValue.substring(0, 2),
+              //         color: Colors.green,
+              //         initSide: CardSide.BACK,
+              //       ),
+              //       ...List.generate(
+              //         gameSession.rowLength,
+              //         (rowId) => DigitCard(
+              //           // key: cardKeyList[rowId],
+              //           controller:
+              //               ref.watch(flipCardControllerListProvider)[rowId],
+              //           digitText: constValueBelow[rowId],
+              //           color: score < rowId ? Colors.red : Colors.green,
+              //         ),
+              //       )
+              //     ]),
+              //     ...List.generate(
+              //         constValueBelow.length ~/ gameSession.rowLength - 1,
+              //         (colId) => DigitCardsRow(children: [
+              //               DigitCard(
+              //                 isDammy: true,
+              //                 controller: FlipCardController(),
+              //                 digitText: 'digitText',
+              //                 color: Colors.black,
+              //                 initSide: CardSide.BACK,
+              //               ),
+              //               ...List.generate(
+              //                   gameSession.rowLength,
+              //                   (rowId) => DigitCard(
+              //                         // key: cardKeyList[
+              //                         //     (colId + 1) * gameSession.rowLength +
+              //                         //         rowId],
+              //                         // controller: controllerList.value[
+              //                         //     (colId + 1) * gameSession.rowLength +
+              //                         //         rowId],
+              //                         controller: ref.watch(
+              //                                 flipCardControllerListProvider)[
+              //                             (colId + 1) * gameSession.rowLength +
+              //                                 rowId],
+              //                         digitText: constValueBelow[
+              //                             (colId + 1) * gameSession.rowLength +
+              //                                 rowId],
+              //                         color: score <
+              //                                 (colId + 1) *
+              //                                         gameSession.rowLength +
+              //                                     rowId
+              //                             ? Colors.red
+              //                             : Colors.green,
+              //                       )),
+              //             ])),
+              //   ]),
             ),
+            SizedBox(width: 300, height: 400, child: StrictButtonPanel()),
+            FlipCard(
+                // key: const ValueKey('flipCard'),
+                controller: controllerList.value[14],
+                front: Text('front'),
+                back: Text('back')),
           ],
         ));
   }

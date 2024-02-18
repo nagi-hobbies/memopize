@@ -1,3 +1,6 @@
+import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
+import 'package:memopize/application/state/s_flip_card_controller.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
@@ -10,12 +13,14 @@ class PressedNumUseCase {
     required this.isWaitingInputNotifier,
     required this.sGameSessionNotifier,
     required this.scoreNotifier,
+    required this.flipCardControllerList,
   });
 
   final SOpenDigitsNumNotifier openDigitsNumNotifier;
   final SIsWaitingInputNotifier isWaitingInputNotifier;
   final SGameSessionNotifier sGameSessionNotifier;
   final SScoreNotifier scoreNotifier;
+  final List<FlipCardController> flipCardControllerList;
 
   Future<void> pressedNum(int pressedNum) async {
     final judgementor = DigitJudgementor();
@@ -24,12 +29,20 @@ class PressedNumUseCase {
 
     if (result) {
       openDigitsNumNotifier.increment();
+      // flipCardControllerList[openDigitsNumNotifier.value - 1].toggleCard();
+
       if (scoreNotifier.value < openDigitsNumNotifier.value) {
         scoreNotifier.set(openDigitsNumNotifier.value);
       }
     } else {
       isWaitingInputNotifier.toggle();
-      openDigitsNumNotifier.set(sGameSessionNotifier.value.constValue.length);
+      openDigitsNumNotifier
+          .set(sGameSessionNotifier.value.constValue.split('.')[1].length);
+      // flipCardControllerList.forEach((controller) {
+      //   if (controller.state == CardSide.FRONT) {
+      //     controller.toggleCard();
+      //   }
+      // });
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
+import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/presentation/widgets/strict_button.dart';
 
 class StrictButtonPanel extends ConsumerWidget {
@@ -18,51 +19,62 @@ class StrictButtonPanel extends ConsumerWidget {
       usecase.pressedNum(pressedNum);
     }
 
-    return Column(children: [
-      ...List.generate(
-          3,
-          (colInd) => Expanded(
-                  child: FractionallySizedBox(
-                child: Row(
-                    children: List.generate(
-                        3,
-                        (rowInd) => Expanded(
-                                child: SizedBox(
-                              height: double.infinity,
-                              child: StrictButton(
-                                onPressed: isWaitingInput
-                                    ? () => onPressed(colInd * 3 + rowInd + 1)
-                                    : null,
-                                number: colInd * 3 + rowInd + 1,
-                              ),
-                            )))),
-              ))),
-      Expanded(
-        child: Row(
-          children: [
-            const Expanded(
-              child: SizedBox(
-                height: double.infinity,
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                height: double.infinity,
-                child: StrictButton(
-                  onPressed: isWaitingInput ? () => onPressed(0) : null,
-                  number: 0,
+    return Container(
+      child: Column(children: [
+        ...List.generate(
+            3,
+            (colInd) => Expanded(
+                    child: FractionallySizedBox(
+                  child: Row(
+                      children: List.generate(
+                          3,
+                          (rowInd) => Expanded(
+                                  child: SizedBox(
+                                height: double.infinity,
+                                child: StrictButton(
+                                  onPressed: isWaitingInput
+                                      ? () => onPressed(colInd * 3 + rowInd + 1)
+                                      : null,
+                                  number: colInd * 3 + rowInd + 1,
+                                ),
+                              )))),
+                ))),
+        Expanded(
+          child: Row(
+            children: [
+              const Expanded(
+                child: SizedBox(
+                  height: double.infinity,
                 ),
               ),
-            ),
-            const Expanded(
-              child: SizedBox(
-                height: double.infinity,
+              Expanded(
+                child: SizedBox(
+                  height: double.infinity,
+                  child: StrictButton(
+                    onPressed: isWaitingInput ? () => onPressed(0) : null,
+                    number: 0,
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
-      )
-    ]);
+              Expanded(
+                child: SizedBox(
+                  height: double.infinity,
+                  child: StrictButton(
+                      onPressed: !isWaitingInput
+                          ? () {
+                              final usecase =
+                                  ref.read(pressedContinueUseCaseProvider);
+                              usecase.call();
+                            }
+                          : null,
+                      number: -1),
+                ),
+              ),
+            ],
+          ),
+        )
+      ]),
+    );
 
     // GridView.count(
     //     padding: const EdgeInsets.all(10),

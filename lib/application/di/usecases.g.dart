@@ -160,7 +160,7 @@ class _StartGameSessionUseCaseProviderElement
   int get constId => (origin as StartGameSessionUseCaseProvider).constId;
 }
 
-String _$pressedNumUseCaseHash() => r'b68c8ae7f270011d0e2311bb38dafe8738914084';
+String _$pressedNumUseCaseHash() => r'6ab33acda7e3515941e75902dce39a8fa0007081';
 
 /// See also [pressedNumUseCase].
 @ProviderFor(pressedNumUseCase)
@@ -195,7 +195,7 @@ final pressedContinueUseCaseProvider =
 typedef PressedContinueUseCaseRef
     = AutoDisposeProviderRef<PressedContinueUseCase>;
 String _$exitGamePageUseCaseHash() =>
-    r'd29d845a541b408bf4c6748c216be3782a0b5083';
+    r'2de97407b8194e98539e3de13680f864acb1543a';
 
 /// See also [exitGamePageUseCase].
 @ProviderFor(exitGamePageUseCase)
