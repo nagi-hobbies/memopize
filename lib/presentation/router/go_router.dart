@@ -1,6 +1,7 @@
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/presentation/pages/collection_page.dart';
-import 'package:memopize/presentation/pages/game_page.dart';
+import 'package:memopize/presentation/pages/_game_page.dart';
+import 'package:memopize/presentation/pages/memorize_page.dart';
 import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/pages/title_page.dart';
 import 'package:memopize/presentation/router/page_path.dart';
@@ -44,7 +45,18 @@ GoRouter goRouter(GoRouterRef ref) {
       builder: (context, state) {
         return const TitlePage();
       },
-    )
+    ),
+    GoRoute(
+        path: PageId.memorize.path,
+        name: PageId.memorize.routeName,
+        builder: (context, state) {
+          return const MemorizePage();
+        },
+        onExit: (context) async {
+          final usecase = ref.read(exitGamePageUseCaseProvider);
+          await usecase.call();
+          return true;
+        }),
   ];
   return GoRouter(
     initialLocation: PageId.title.path,

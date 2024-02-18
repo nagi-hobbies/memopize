@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 /// 画面ID
 enum PageId {
   title,
   collection,
   select,
   game,
+  memorize,
 }
 
 /// 画面パス
@@ -15,6 +14,7 @@ extension PagePath on PageId {
         PageId.collection => '/collection',
         PageId.select => '/select',
         PageId.game => '/game/:constId',
+        PageId.memorize => '/memorize',
       };
 }
 
@@ -25,5 +25,6 @@ extension PageName on PageId {
         PageId.collection => 'collection',
         PageId.select => 'select',
         PageId.game => 'game',
+        PageId.memorize => 'memorize',
       };
 }

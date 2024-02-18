@@ -21,88 +21,77 @@ class CollectionPage extends HookConsumerWidget {
         appBar: AppBar(
           title: const Text('memoPize'),
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: const Color(0xfff9fafe),
-          child: ListView(
-            padding: const EdgeInsets.all(10),
-            children: List.generate(
-                displayConstDataList.length,
-                (i) => Container(
-                      margin: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 0), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor: Colors.transparent,
+        backgroundColor: const Color(0xfff9fafe),
+        body: ListView(
+          padding: const EdgeInsets.all(10),
+          children: List.generate(
+              displayConstDataList.length,
+              (i) => Container(
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 0), // changes position of shadow
                         ),
-                        child: ExpansionTile(
-                            title: Text(displayConstDataList[i].name),
-                            subtitle: Text(
-                                '${displayConstDataList[i].firstthree}...'),
-                            leading: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child:
-                                    TexText(tex: displayConstDataList[i].tex)),
-                            trailing: SizedBox(
-                              width: 100,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    AnimatedRotation(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      turns: isExpanded.value[i] ? 0.5 : 0,
-                                      child: const Icon(Icons.expand_more),
-                                    ),
-                                    IconButton.filled(
-                                      onPressed: () {
-                                        final router =
-                                            ref.read(goRouterProvider);
-                                        final usecase = ref.read(
-                                            startGameSessionUseCaseProvider(
-                                                displayConstDataList[i].id));
-                                        usecase.call();
-                                        router.goNamed(PageId.game.routeName,
-                                            pathParameters: {
-                                              'constId': displayConstDataList[i]
-                                                  .id
-                                                  .toString(),
-                                            });
-                                      },
-                                      icon: const Icon(
-                                        Icons.play_arrow_outlined,
-                                      ),
-                                    ),
-                                  ]),
-                            ),
-                            children: [
-                              ListTile(
-                                title:
-                                    Text(displayConstDataList[i].description),
-                              ),
-                            ],
-                            onExpansionChanged: (value) {
-                              var newIsExpanded = isExpanded.value.toList();
-                              newIsExpanded[i] = value;
-                              isExpanded.value = newIsExpanded;
-                            }),
+                      ],
+                    ),
+                    child: Theme(
+                      data: Theme.of(context).copyWith(
+                        dividerColor: Colors.transparent,
                       ),
-                    )).toList(),
-          ),
+                      child: ExpansionTile(
+                          title: Text(displayConstDataList[i].name),
+                          subtitle:
+                              Text('${displayConstDataList[i].firstthree}...'),
+                          leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: TexText(tex: displayConstDataList[i].tex)),
+                          trailing: SizedBox(
+                            width: 100,
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  AnimatedRotation(
+                                    duration: const Duration(milliseconds: 300),
+                                    turns: isExpanded.value[i] ? 0.5 : 0,
+                                    child: const Icon(Icons.expand_more),
+                                  ),
+                                  IconButton.filled(
+                                    onPressed: () async {
+                                      final router = ref.read(goRouterProvider);
+                                      final usecase = ref.read(
+                                          startGameSessionUseCaseProvider(
+                                              displayConstDataList[i].id));
+                                      await usecase.call();
+                                      router.goNamed(
+                                        PageId.memorize.routeName,
+                                      );
+                                    },
+                                    icon: const Icon(
+                                      Icons.play_arrow_outlined,
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          children: [
+                            ListTile(
+                              title: Text(displayConstDataList[i].description),
+                            ),
+                          ],
+                          onExpansionChanged: (value) {
+                            var newIsExpanded = isExpanded.value.toList();
+                            newIsExpanded[i] = value;
+                            isExpanded.value = newIsExpanded;
+                          }),
+                    ),
+                  )).toList(),
         ));
   }
 }
