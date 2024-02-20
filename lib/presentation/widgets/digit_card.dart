@@ -2,7 +2,8 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:memopize/application/state/s_global_object_key_list.dart';
+import 'package:memopize/application/state/memorize_page/s_global_object_key_list.dart';
+import 'package:memopize/application/state/s_game_session.dart';
 
 class DigitCard extends ConsumerWidget {
   const DigitCard({
@@ -23,7 +24,9 @@ class DigitCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final globalObjectKeyList = ref.watch(globalObjectKeyListProvider);
+    final gamesession = ref.watch(sGameSessionNotifierProvider);
+    final globalObjectKeyList = ref.watch(
+        globalObjectKeyListProvider(length: gamesession.constValue.length));
     final spreadRadius = 1.0;
     final blurRadius = 5.0;
     final shadowOffset = const Offset(1, 1);

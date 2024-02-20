@@ -70,7 +70,7 @@ class CollectionPage extends HookConsumerWidget {
                                           startGameSessionUseCaseProvider(
                                               displayConstDataList[i].id));
                                       await usecase.call();
-                                      router.goNamed(
+                                      router.pushNamed(
                                         PageId.memorize.routeName,
                                       );
                                     },

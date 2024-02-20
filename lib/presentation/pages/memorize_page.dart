@@ -3,14 +3,12 @@ import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:memopize/application/state/s_flip_card_controller.dart';
+import 'package:memopize/application/state/memorize_page/list_key.dart';
+import 'package:memopize/application/state/memorize_page/s_global_object_key_list.dart';
 import 'package:memopize/application/state/s_game_session.dart';
-import 'package:memopize/application/state/s_global_object_key_list.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_score.dart';
 import 'package:memopize/domain/types/game_session.dart';
-import 'package:memopize/presentation/router/go_router.dart';
-import 'package:memopize/presentation/router/page_path.dart';
 import 'package:memopize/presentation/widgets/digit_card.dart';
 import 'package:memopize/presentation/widgets/digit_cards_row.dart';
 import 'package:memopize/presentation/widgets/strict_button_panel.dart';
@@ -21,22 +19,29 @@ class MemorizePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final listKey = ref.watch(listKeyProvider);
     const itemExtent = 60.0;
     final openDigitsNum = ref.watch(sOpenDigitsNumNotifierProvider);
     final score = ref.watch(sScoreNotifierProvider);
     final GameSession gameSession = ref.watch(sGameSessionNotifierProvider);
     final constValueBelow = gameSession.constValue.split('.')[1];
 
-    // final controllerList = ref.watch(flipCardControllerListProvider);
     final controllerList = useState(
         List.generate(constValueBelow.length, (index) => FlipCardController()));
 
-    // final cardKeyList = List.generate(constValueBelow.length,
-    //     (index) => GlobalObjectKey<FlipCardState>('key$index'));
-
-    final globalObjectKeyList = ref.watch(globalObjectKeyListProvider);
+    final globalObjectKeyList = ref.watch(
+        globalObjectKeyListProvider(length: gameSession.constValue.length));
 
     final scrollController = ScrollController();
+
+    scrollController.addListener(() {
+      debugPrint('scrollController');
+      // if (scrollController.position.pixels ==
+      //     scrollController.position.maxScrollExtent) {
+      //   debugPrint('scrollController.position.maxScrollExtent');
+      //   globalKeyAnimatedList.currentState!.insertItem(1);
+      // }
+    });
 
     Color chooseColor(int digitInd) {
       if (score < digitInd) {
@@ -90,16 +95,6 @@ class MemorizePage extends HookConsumerWidget {
         appBar: AppBar(
           title: Row(
             children: [
-              TextButton.icon(
-                  onPressed: () {
-                    final route = ref.read(goRouterProvider);
-                    route.goNamed(
-                      PageId.collection.routeName,
-                    );
-                  },
-                  label:
-                      const Text('Back', style: TextStyle(color: Colors.white)),
-                  icon: const Icon(Icons.arrow_back, color: Colors.white)),
               const Text('Game'),
               TextButton(onPressed: () {}, child: Text('1')),
             ],
@@ -160,15 +155,16 @@ class MemorizePage extends HookConsumerWidget {
                 ],
               ),
               child: AnimatedList(
+                  key: listKey,
                   controller: scrollController,
                   initialItemCount: 5,
                   itemBuilder: (context, colId, animation) {
                     if (colId == 0) {
                       return DigitCardsRow(
+                          animation: animation,
                           key: GlobalObjectKey('firstRow'),
                           children: [
                             DigitCard(
-                              // key: cardKeyList[0],
                               id: -1,
                               controller: FlipCardController(),
                               digitText: gameSession.constValue.substring(0, 2),
@@ -178,22 +174,20 @@ class MemorizePage extends HookConsumerWidget {
                             ...List.generate(
                               gameSession.rowLength,
                               (rowId) => DigitCard(
-                                // key: cardKeyList[rowId],
                                 id: rowId,
                                 controller: controllerList.value[rowId],
                                 digitText: constValueBelow[rowId],
-                                color:
-                                    score < rowId ? Colors.red : Colors.green,
+                                color: chooseColor(rowId),
                               ),
                             )
                           ]);
                     } else {
                       return DigitCardsRow(
+                          animation: animation,
                           key: GlobalObjectKey('row$colId'),
                           children: [
                             DigitCard(
                               isDammy: true,
-                              // key: cardKeyList[index],
                               id: -1,
                               controller: FlipCardController(),
                               digitText: 'digitText',
@@ -204,15 +198,6 @@ class MemorizePage extends HookConsumerWidget {
                                 gameSession.rowLength,
                                 (rowId) => DigitCard(
                                       key: GlobalObjectKey('row$colId$rowId'),
-                                      // key: cardKeyList[
-                                      //     (colId + 1) * gameSession.rowLength +
-                                      //         rowId],
-                                      // controller: controllerList.value.value[
-                                      //     (colId + 1) * gameSession.rowLength +
-                                      //         rowId],
-                                      // key: cardKeyList[
-                                      //     (index) * gameSession.rowLength +
-                                      //         rowId],
                                       id: (colId) * gameSession.rowLength +
                                           rowId,
                                       controller: controllerList.value[
@@ -221,11 +206,9 @@ class MemorizePage extends HookConsumerWidget {
                                       digitText: constValueBelow[
                                           (colId) * gameSession.rowLength +
                                               rowId],
-                                      color: score <
-                                              (colId) * gameSession.rowLength +
-                                                  rowId
-                                          ? Colors.red
-                                          : Colors.green,
+                                      color: chooseColor(
+                                          (colId) * gameSession.rowLength +
+                                              rowId),
                                     )),
                           ]);
                     }

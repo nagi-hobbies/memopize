@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 @immutable
 class MyColors extends ThemeExtension<MyColors> {
@@ -35,8 +36,10 @@ class MyColors extends ThemeExtension<MyColors> {
 }
 
 createThemeData(Color seedColor, Brightness brightness) {
-  final themeData =
-      ThemeData(colorSchemeSeed: seedColor, brightness: brightness);
+  final themeData = ThemeData(
+      colorSchemeSeed: seedColor,
+      brightness: brightness,
+      fontFamily: GoogleFonts.mPlusRounded1c().fontFamily);
   return themeData.copyWith(
     extensions: <ThemeExtension<dynamic>>{
       const MyColors(

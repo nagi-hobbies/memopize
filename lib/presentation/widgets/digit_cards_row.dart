@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DigitCardsRow extends StatelessWidget {
-  const DigitCardsRow({super.key, required this.children});
+  const DigitCardsRow(
+      {super.key, required this.children, required this.animation});
   final List<Widget> children;
+  final Animation<double> animation;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,15 @@ class DigitCardsRow extends StatelessWidget {
       //     ),
       //   ],
       // ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: children,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, 1),
+          end: const Offset(0, 0),
+        ).animate(animation),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: children,
+        ),
       ),
     );
   }

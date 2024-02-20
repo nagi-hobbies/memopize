@@ -1,7 +1,7 @@
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/presentation/pages/collection_page.dart';
-import 'package:memopize/presentation/pages/_game_page.dart';
 import 'package:memopize/presentation/pages/memorize_page.dart';
+import 'package:memopize/presentation/pages/memorizing_page.dart';
 import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/pages/title_page.dart';
 import 'package:memopize/presentation/router/page_path.dart';
@@ -13,19 +13,6 @@ part 'go_router.g.dart';
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   final routes = [
-    GoRoute(
-      path: PageId.game.path,
-      name: PageId.game.routeName,
-      builder: (context, state) {
-        final constId = state.pathParameters['constId']!;
-        return GamePage(constId: constId);
-      },
-      onExit: (context) async {
-        final usecase = ref.read(exitGamePageUseCaseProvider);
-        await usecase.call();
-        return true;
-      },
-    ),
     GoRoute(
         path: PageId.collection.path,
         name: PageId.collection.routeName,
@@ -50,7 +37,7 @@ GoRouter goRouter(GoRouterRef ref) {
         path: PageId.memorize.path,
         name: PageId.memorize.routeName,
         builder: (context, state) {
-          return const MemorizePage();
+          return const MemorizingPage();
         },
         onExit: (context) async {
           final usecase = ref.read(exitGamePageUseCaseProvider);

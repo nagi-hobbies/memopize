@@ -1,6 +1,5 @@
-import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
-import 'package:memopize/application/state/s_flip_card_controller.dart';
+import 'package:memopize/application/state/memorize_page/s_previous_open_digits_num.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_is_waitng_input.dart';
 import 'package:memopize/application/state/s_open_digits_num.dart';
@@ -10,6 +9,7 @@ import 'package:memopize/domain/features/digit_judgementor.dart';
 class PressedNumUseCase {
   PressedNumUseCase({
     required this.openDigitsNumNotifier,
+    required this.previousOpenDigitsNumNotifier,
     required this.isWaitingInputNotifier,
     required this.sGameSessionNotifier,
     required this.scoreNotifier,
@@ -17,6 +17,7 @@ class PressedNumUseCase {
   });
 
   final SOpenDigitsNumNotifier openDigitsNumNotifier;
+  final SPreviousOpenDigitsNumNotifier previousOpenDigitsNumNotifier;
   final SIsWaitingInputNotifier isWaitingInputNotifier;
   final SGameSessionNotifier sGameSessionNotifier;
   final SScoreNotifier scoreNotifier;
@@ -29,20 +30,15 @@ class PressedNumUseCase {
 
     if (result) {
       openDigitsNumNotifier.increment();
-      // flipCardControllerList[openDigitsNumNotifier.value - 1].toggleCard();
 
       if (scoreNotifier.value < openDigitsNumNotifier.value) {
         scoreNotifier.set(openDigitsNumNotifier.value);
       }
     } else {
       isWaitingInputNotifier.toggle();
+      previousOpenDigitsNumNotifier.set(openDigitsNumNotifier.value);
       openDigitsNumNotifier
-          .set(sGameSessionNotifier.value.constValue.split('.')[1].length);
-      // flipCardControllerList.forEach((controller) {
-      //   if (controller.state == CardSide.FRONT) {
-      //     controller.toggleCard();
-      //   }
-      // });
+          .set(sGameSessionNotifier.value.constValue.length - 1); // . の分を引く
     }
   }
 }

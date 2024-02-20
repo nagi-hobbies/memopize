@@ -1,28 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 's_global_object_key_list.dart';
+part of 's_animated_list_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$globalObjectKeyListHash() =>
-    r'2a11f9ee436e086962746e3c7437d36ff70ebb00';
+String _$sAnimatedListModelNotifierHash() =>
+    r'6da9ce83ad740eb7c223b2dffb0c5e311a131102';
 
-/// See also [globalObjectKeyList].
-@ProviderFor(globalObjectKeyList)
-final globalObjectKeyListProvider =
-    AutoDisposeProvider<List<GlobalObjectKey<FlipCardState>>>.internal(
-  globalObjectKeyList,
-  name: r'globalObjectKeyListProvider',
+/// See also [SAnimatedListModelNotifier].
+@ProviderFor(SAnimatedListModelNotifier)
+final sAnimatedListModelNotifierProvider =
+    NotifierProvider<SAnimatedListModelNotifier, List<int>>.internal(
+  SAnimatedListModelNotifier.new,
+  name: r'sAnimatedListModelNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$globalObjectKeyListHash,
+      : _$sAnimatedListModelNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GlobalObjectKeyListRef
-    = AutoDisposeProviderRef<List<GlobalObjectKey<FlipCardState>>>;
+typedef _$SAnimatedListModelNotifier = Notifier<List<int>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

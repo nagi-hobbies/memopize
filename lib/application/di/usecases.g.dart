@@ -7,7 +7,7 @@ part of 'usecases.dart';
 // **************************************************************************
 
 String _$startGameSessionUseCaseHash() =>
-    r'f05a940ce41af3816a30be19332bcbafd8eb25ae';
+    r'3886e31e4af688e10c6c431146baca58147e1d73';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -160,7 +160,7 @@ class _StartGameSessionUseCaseProviderElement
   int get constId => (origin as StartGameSessionUseCaseProvider).constId;
 }
 
-String _$pressedNumUseCaseHash() => r'6ab33acda7e3515941e75902dce39a8fa0007081';
+String _$pressedNumUseCaseHash() => r'dbdf7516a289b84940105ab051d3c4cee735a2bd';
 
 /// See also [pressedNumUseCase].
 @ProviderFor(pressedNumUseCase)
@@ -177,7 +177,7 @@ final pressedNumUseCaseProvider =
 
 typedef PressedNumUseCaseRef = AutoDisposeProviderRef<PressedNumUseCase>;
 String _$pressedContinueUseCaseHash() =>
-    r'f287e56071f4b7f128a5d02195d3962988ebd854';
+    r'd7002c48ef59baec5e4c5ab23a8b797199ccc25b';
 
 /// See also [pressedContinueUseCase].
 @ProviderFor(pressedContinueUseCase)
