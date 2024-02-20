@@ -25,23 +25,42 @@ class TopBar extends StatelessWidget {
             SizedBox(
                 width: h, height: h, child: TexText(tex: displayConstData.tex)),
             Row(children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    displayConstData.name,
-                  ),
-                  Text(displayConstData.description),
-                ],
+              SizedBox(
+                width: 150.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        displayConstData.name,
+                        style: TextStyle(
+                            fontSize: 20.w, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Text(displayConstData.description),
+                  ],
+                ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: displayConstData.highscore > 0
-                    ? [
-                        Text('High Score: ${displayConstData.highscore}'),
-                        Text('Score: $score'),
-                      ]
-                    : [const Icon(Icons.star), Text('New High Score!: $score')],
+              SizedBox(
+                width: 50.w,
+              ),
+              SizedBox(
+                width: 100.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: displayConstData.highscore > 0
+                      ? [
+                          Text('High Score: ${displayConstData.highscore}',
+                              style: TextStyle(fontSize: 15.w)),
+                          Text('Score: $score'),
+                        ]
+                      : [
+                          const Icon(Icons.star),
+                          Text('New High Score!: $score',
+                              style: TextStyle(fontSize: 15.w)),
+                        ],
+                ),
               )
             ])
           ],
