@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'go_router.dart';
+part of 'list_key.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$goRouterHash() => r'd8c2d53d8b680d17bbc0ca3cbff7e80cf416992a';
+String _$listKeyHash() => r'9c013a149cae3a13f44d3c09049be431b102dd9c';
 
-/// See also [goRouter].
-@ProviderFor(goRouter)
-final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
-  goRouter,
-  name: r'goRouterProvider',
+/// See also [listKey].
+@ProviderFor(listKey)
+final listKeyProvider =
+    AutoDisposeProvider<GlobalKey<AnimatedListState>>.internal(
+  listKey,
+  name: r'listKeyProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$goRouterHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$listKeyHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef ListKeyRef = AutoDisposeProviderRef<GlobalKey<AnimatedListState>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

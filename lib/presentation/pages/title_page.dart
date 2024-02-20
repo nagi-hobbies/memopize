@@ -36,14 +36,14 @@ class TitlePage extends HookConsumerWidget {
               onPressed: () {
                 final router = ref.read(goRouterProvider);
                 router.goNamed(
-                  PageId.select.routeName,
+                  PageId.collection.routeName,
                 );
               },
               child: FutureBuilder(
                 future: displayConstDataList,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    return const Text('Select Page');
+                    return const Text('collection Page');
                   } else {
                     return const CircularProgressIndicator();
                   }

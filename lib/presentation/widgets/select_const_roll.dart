@@ -4,13 +4,12 @@ import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/presentation/widgets/tex_text.dart';
 
 class SelectConstRoll extends ConsumerWidget {
-  const SelectConstRoll(
-      {super.key,
-      required this.itemEtent,
-      required this.scrollController,
-      required this.itemNum});
+  const SelectConstRoll({
+    super.key,
+    required this.itemEtent,
+    required this.scrollController,
+  });
   final double itemEtent;
-  final int itemNum;
   final ScrollController scrollController;
 
   @override
@@ -22,19 +21,31 @@ class SelectConstRoll extends ConsumerWidget {
       controller: scrollController,
       clipBehavior: Clip.antiAlias,
       itemExtent: itemEtent,
-      children: List.generate(
-        itemNum,
-        (index) => Card(
+      children: displayConstDataList.map((displayConstData) {
+        return Card(
+          elevation: 5,
           child: SizedBox(
-              width: 100,
-              height: 100,
+              width: itemEtent * 0.9,
+              height: itemEtent * 0.9,
               child: Center(
                   child: TexText(
-                tex: displayConstDataList[index % displayConstDataList.length]
-                    .tex,
+                tex: displayConstData.tex,
               ))),
-        ),
-      ),
+        );
+      }).toList(),
+      // List.generate(
+      //   itemNum,
+      //   (index) => Card(
+      //     child: SizedBox(
+      //         width: 100,
+      //         height: 100,
+      //         child: Center(
+      //             child: TexText(
+      //           tex: displayConstDataList[index % displayConstDataList.length]
+      //               .tex,
+      //         ))),
+      //   ),
+      // ),
     );
   }
 }

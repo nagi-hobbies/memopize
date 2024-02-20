@@ -1,5 +1,7 @@
 import 'package:memopize/application/di/usecases.dart';
-import 'package:memopize/presentation/pages/game_page.dart';
+import 'package:memopize/presentation/pages/collection_page.dart';
+import 'package:memopize/presentation/pages/memorize_page.dart';
+import 'package:memopize/presentation/pages/memorizing_page.dart';
 import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/pages/title_page.dart';
 import 'package:memopize/presentation/router/page_path.dart';
@@ -12,18 +14,11 @@ part 'go_router.g.dart';
 GoRouter goRouter(GoRouterRef ref) {
   final routes = [
     GoRoute(
-      path: PageId.game.path,
-      name: PageId.game.routeName,
-      builder: (context, state) {
-        final constId = state.pathParameters['constId']!;
-        return GamePage(constId: constId);
-      },
-      onExit: (context) async {
-        final usecase = ref.read(exitGamePageUseCaseProvider);
-        await usecase.call();
-        return true;
-      },
-    ),
+        path: PageId.collection.path,
+        name: PageId.collection.routeName,
+        builder: (context, state) {
+          return const CollectionPage();
+        }),
     GoRoute(
       path: PageId.select.path,
       name: PageId.select.routeName,
@@ -37,7 +32,18 @@ GoRouter goRouter(GoRouterRef ref) {
       builder: (context, state) {
         return const TitlePage();
       },
-    )
+    ),
+    GoRoute(
+        path: PageId.memorize.path,
+        name: PageId.memorize.routeName,
+        builder: (context, state) {
+          return const MemorizingPage();
+        },
+        onExit: (context) async {
+          final usecase = ref.read(exitGamePageUseCaseProvider);
+          await usecase.call();
+          return true;
+        }),
   ];
   return GoRouter(
     initialLocation: PageId.title.path,

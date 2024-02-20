@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flip_card:
   flutter_svg:
   tex:
   path:
@@ -48,6 +49,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   json_serializable:
@@ -80,6 +82,7 @@ flutter:
     - assets/google_fonts/
     - assets/texts/const_data/
     - assets/jsons/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

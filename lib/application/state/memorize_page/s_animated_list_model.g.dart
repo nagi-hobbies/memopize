@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 's_game_session.dart';
+part of 's_animated_list_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sGameSessionNotifierHash() =>
-    r'e50688a8529bd0dc9fa494746b4ce4fb9c26a85b';
+String _$sAnimatedListModelNotifierHash() =>
+    r'6da9ce83ad740eb7c223b2dffb0c5e311a131102';
 
-/// See also [SGameSessionNotifier].
-@ProviderFor(SGameSessionNotifier)
-final sGameSessionNotifierProvider =
-    NotifierProvider<SGameSessionNotifier, GameSession>.internal(
-  SGameSessionNotifier.new,
-  name: r'sGameSessionNotifierProvider',
+/// See also [SAnimatedListModelNotifier].
+@ProviderFor(SAnimatedListModelNotifier)
+final sAnimatedListModelNotifierProvider =
+    NotifierProvider<SAnimatedListModelNotifier, List<int>>.internal(
+  SAnimatedListModelNotifier.new,
+  name: r'sAnimatedListModelNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$sGameSessionNotifierHash,
+      : _$sAnimatedListModelNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SGameSessionNotifier = Notifier<GameSession>;
+typedef _$SAnimatedListModelNotifier = Notifier<List<int>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

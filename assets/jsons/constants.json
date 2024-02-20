@@ -55,6 +55,72 @@
             "nameEn":"square root of 3",
             "descriptionJa":"3乗すると3になる数．",
             "descriptionEn":"A number that becomes 3 when cubed."
+        },
+        {
+            "id":6,
+            "category":"mathematical",
+            "tex":"dummy tex6",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
+        },
+        {
+            "id":7,
+            "category":"mathematical",
+            "tex":"dummy tex7",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
+        },
+        {
+            "id":8,
+            "category":"mathematical",
+            "tex":"dummy tex8",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
+        },
+        {
+            "id":9,
+            "category":"mathematical",
+            "tex":"dummy tex9",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
+        },
+        {
+            "id":10,
+            "category":"mathematical",
+            "tex":"dummy tex10",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
+        },
+        {
+            "id":11,
+            "category":"mathematical",
+            "tex":"dummy tex11",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"ダミー nameJa",
+            "nameEn":"dummy nameEn",
+            "descriptionJa":"ダミー descriptionJa",
+            "descriptionEn":"dummy descriptionEn"
         }
         ]
 }
