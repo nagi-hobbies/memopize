@@ -6,6 +6,8 @@ import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/domain/types/display_const_data.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
+import 'package:memopize/presentation/widgets/common/app_title.dart';
+import 'package:memopize/presentation/widgets/common/logo.dart';
 import 'package:memopize/presentation/widgets/common/tex_text.dart';
 
 class CollectionPage extends HookConsumerWidget {
@@ -19,7 +21,12 @@ class CollectionPage extends HookConsumerWidget {
         useState(List.filled(displayConstDataList.length, false));
     return Scaffold(
         appBar: AppBar(
-          title: const Text('memoPize'),
+          title: AppTitle(),
+          backgroundColor: Color(0xff395886),
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+          ),
         ),
         backgroundColor: const Color(0xfff9fafe),
         body: ListView(
@@ -65,6 +72,10 @@ class CollectionPage extends HookConsumerWidget {
                                   ),
                                   IconButton.filled(
                                     onPressed: () async {
+                                      if (displayConstDataList[i].name ==
+                                          'Coming soon') {
+                                        return;
+                                      }
                                       final router = ref.read(goRouterProvider);
                                       final usecase = ref.read(
                                           startGameSessionUseCaseProvider(
