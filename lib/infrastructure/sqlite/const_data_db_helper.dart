@@ -105,7 +105,8 @@ class ConstValueDBHelper {
     );
   }
 
-  Future<List<DisplayConstData>> getAllDisplayConstData(String langage) async {
+  static Future<List<DisplayConstData>> getAllDisplayConstData(
+      String langage) async {
     final Database db = await _openDB();
     final List<Map<String, dynamic>> maps = await db.query(
       _tableName,

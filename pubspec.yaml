@@ -50,6 +50,8 @@ dependencies:
       url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
       ref: a738913
+  animated_text_kit: ^4.2.2
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   json_serializable:
