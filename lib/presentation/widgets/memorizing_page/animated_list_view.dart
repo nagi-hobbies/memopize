@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memopize/application/state/memorize_page/list_key.dart';
 import 'package:memopize/application/state/memorize_page/s_animated_list_model.dart';
+import 'package:memopize/application/state/memorize_page/s_is_waitng_input.dart';
+import 'package:memopize/application/state/memorize_page/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_game_session.dart';
-import 'package:memopize/application/state/s_is_waitng_input.dart';
-import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/presentation/widgets/common/card_element.dart';
 import 'package:memopize/presentation/widgets/memorizing_page/row_view.dart';
 
@@ -23,7 +23,7 @@ class AnimatedListView extends HookConsumerWidget {
     final isWaiting = ref.watch(sIsWaitingInputNotifierProvider);
     final gameSession = ref.watch(sGameSessionNotifierProvider);
 
-    final isReverse = useState(false);
+    final isReverse = useState(false); // アイテムビルダーのアニメーションを反転させるかどうか
 
     Widget _itemBuilder(
       BuildContext context,
@@ -35,7 +35,7 @@ class AnimatedListView extends HookConsumerWidget {
         sizeFactor: animation,
         child: SlideTransition(
           position: Tween<Offset>(
-            begin: isReverse.value ? Offset(-3, 0) : Offset(3, 0),
+            begin: isReverse.value ? const Offset(-3, 0) : const Offset(3, 0),
             end: const Offset(0, 0),
           ).animate(animation),
           child: RowView(colIndex: animatedListModel[index]),
@@ -52,7 +52,7 @@ class AnimatedListView extends HookConsumerWidget {
         sizeFactor: animation,
         child: SlideTransition(
           position: Tween<Offset>(
-            begin: isReverse.value ? Offset(3, 0) : Offset(-3, 0),
+            begin: isReverse.value ? const Offset(3, 0) : const Offset(-3, 0),
             end: const Offset(0, 0),
           ).animate(animation),
           child: RowView(
@@ -62,26 +62,25 @@ class AnimatedListView extends HookConsumerWidget {
       );
     }
 
+    // 次の行へ移る処理
     void _next() {
       listKey.currentState?.removeItem(0, _removedItemBuilder);
       ref.read(sAnimatedListModelNotifierProvider.notifier).remove();
       ref.read(sAnimatedListModelNotifierProvider.notifier).add();
-      debugPrint('animatedListModel: $animatedListModel');
       Future.delayed(const Duration(milliseconds: 200), () {
         listKey.currentState?.insertItem(
           animatedListModel.length - 1,
         );
       });
-      Future.delayed(const Duration(milliseconds: 210), () {});
     }
 
+    // 前の行へ戻る処理
     void _back() {
       isReverse.value = true;
       listKey.currentState
           ?.removeItem(animatedListModel.length - 1, _removedItemBuilder);
       ref.read(sAnimatedListModelNotifierProvider.notifier).reverseRemove();
       ref.read(sAnimatedListModelNotifierProvider.notifier).reverseAdd();
-      debugPrint('animatedListModel: $animatedListModel');
       Future.delayed(const Duration(milliseconds: 200), () {
         listKey.currentState?.insertItem(0);
       }).then((_) {
@@ -89,9 +88,9 @@ class AnimatedListView extends HookConsumerWidget {
           isReverse.value = false;
         });
       });
-      Future.delayed(const Duration(milliseconds: 200), () {});
     }
 
+    // openDigitNumが変更されたら、アニメーションを実行する
     useEffect(() {
       if (!isWaiting) {
         return null;
@@ -117,9 +116,8 @@ class AnimatedListView extends HookConsumerWidget {
         child: SizedBox(
             height: viewHeight,
             child: AnimatedList(
-                clipBehavior: Clip.none,
                 key: listKey,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(), // 手動スクロール無効
                 initialItemCount: animatedListModel.length,
                 itemBuilder: _itemBuilder)));
   }

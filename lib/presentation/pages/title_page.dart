@@ -12,18 +12,15 @@ class TitlePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final displayConstDataList =
-    //     ref.watch(sDisplayConstDataListNotifierProvider);
-    Future<List<DisplayConstData>> displayConstDataList =
-        ConstValueDBHelper().getAllDisplayConstData('Ja');
-    useEffect(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future<List<DisplayConstData>> displayConstDataList =
+          ConstValueDBHelper().getAllDisplayConstData('Ja');
       final sDisplayConstDataListNotifier =
           ref.read(sDisplayConstDataListNotifierProvider.notifier);
       displayConstDataList.then((value) {
         sDisplayConstDataListNotifier.set(value);
       });
-      return null;
-    }, []);
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Title'),
@@ -39,16 +36,17 @@ class TitlePage extends HookConsumerWidget {
                   PageId.collection.routeName,
                 );
               },
-              child: FutureBuilder(
-                future: displayConstDataList,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return const Text('collection Page');
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
-              ),
+              child: const Text('Collection'),
+              // child: FutureBuilder(
+              //   future: displayConstDataList,
+              //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.done) {
+              //       return const Text('collection Page');
+              //     } else {
+              //       return const CircularProgressIndicator();
+              //     }
+              //   },
+              // ),
             ),
           ],
         ),

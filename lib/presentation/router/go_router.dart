@@ -1,8 +1,6 @@
 import 'package:memopize/application/di/usecases.dart';
 import 'package:memopize/presentation/pages/collection_page.dart';
-import 'package:memopize/presentation/pages/memorize_page.dart';
 import 'package:memopize/presentation/pages/memorizing_page.dart';
-import 'package:memopize/presentation/pages/select_page.dart';
 import 'package:memopize/presentation/pages/title_page.dart';
 import 'package:memopize/presentation/router/page_path.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,13 +17,6 @@ GoRouter goRouter(GoRouterRef ref) {
         builder: (context, state) {
           return const CollectionPage();
         }),
-    GoRoute(
-      path: PageId.select.path,
-      name: PageId.select.routeName,
-      builder: (context, state) {
-        return const SelectPage();
-      },
-    ),
     GoRoute(
       path: PageId.title.path,
       name: PageId.title.routeName,

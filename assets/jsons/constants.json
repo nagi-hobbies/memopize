@@ -1,7 +1,6 @@
 {
     "constants":[
         {
-            "id":1,
             "category":"mathematical",
             "tex":"\\pi",
             "firstthree":"3.14",
@@ -13,7 +12,6 @@
             
         },
         {
-            "id":2,
             "category":"mathematical",
             "tex":"e",
             "firstthree":"2.71",
@@ -24,7 +22,6 @@
             "descriptionEn":"The base of the natural logarithm."
         },
         {
-            "id":3,
             "category":"mathematical",
             "tex":"\\phi",
             "firstthree":"1.61",
@@ -35,7 +32,6 @@
             "descriptionEn":"Ratio of the lengths of the sides of a square whose shorter side is one of the sides, such that when the square is cut out, it becomes a rectangle similar to the original."
         },
         {
-            "id":4,
             "category":"mathematical",
             "tex":"\\sqrt{2}",
             "firstthree":"1.41",
@@ -46,7 +42,6 @@
             "descriptionEn":"A number that becomes 2 when squared. Also known as the silver ratio."
         },
         {
-            "id":5,
             "category":"mathematical",
             "tex":"\\sqrt{3}",
             "firstthree":"1.73",
@@ -57,70 +52,70 @@
             "descriptionEn":"A number that becomes 3 when cubed."
         },
         {
-            "id":6,
             "category":"mathematical",
-            "tex":"dummy tex6",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
         },
         {
-            "id":7,
             "category":"mathematical",
-            "tex":"dummy tex7",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
         },
         {
-            "id":8,
             "category":"mathematical",
-            "tex":"dummy tex8",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
-        },
-        {
-            "id":9,
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
+        },        {
             "category":"mathematical",
-            "tex":"dummy tex9",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
-        },
-        {
-            "id":10,
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
+        },        {
             "category":"mathematical",
-            "tex":"dummy tex10",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
-        },
-        {
-            "id":11,
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
+        },        {
             "category":"mathematical",
-            "tex":"dummy tex11",
+            "tex":"?",
             "firstthree":"1.23",
             "value":"1.23456789",
-            "nameJa":"ダミー nameJa",
-            "nameEn":"dummy nameEn",
-            "descriptionJa":"ダミー descriptionJa",
-            "descriptionEn":"dummy descriptionEn"
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
+        },        {
+            "category":"mathematical",
+            "tex":"?",
+            "firstthree":"1.23",
+            "value":"1.23456789",
+            "nameJa":"Comming soon",
+            "nameEn":"Comming soon",
+            "descriptionJa":"Comming soon",
+            "descriptionEn":"Comming soon"
         }
         ]
 }

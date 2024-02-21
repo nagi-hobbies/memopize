@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memopize/application/state/memorize_page/s_global_object_key_list.dart';
+import 'package:memopize/application/state/memorize_page/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_game_session.dart';
-import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_score.dart';
 
 class DigitCard extends HookConsumerWidget {
@@ -106,13 +106,13 @@ class DigitCard extends HookConsumerWidget {
       );
     }
 
+    // [openDigitNum]が変更されたら、カードを表裏反転する
     useEffect(() {
       int shouldBeFrontInd = openDigitNum - 1;
       for (int i = 0; i < globalObjectKeyList.length; i++) {
         if (globalObjectKeyList[i].currentState == null) {
           continue;
         }
-        ; // -1 is above constValue
         if (i <= shouldBeFrontInd !=
             globalObjectKeyList[i].currentState!.isFront) {
           globalObjectKeyList[i].currentState!.toggleCard();
@@ -127,7 +127,7 @@ class DigitCard extends HookConsumerWidget {
             width: w,
             child: Center(
               child: Text(
-                '${text ?? ''}',
+                text ?? '',
                 style: TextStyle(fontSize: 15.h),
               ),
             ))

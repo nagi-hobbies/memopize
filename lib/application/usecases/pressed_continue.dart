@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:memopize/application/state/memorize_page/s_is_waitng_input.dart';
+import 'package:memopize/application/state/memorize_page/s_open_digits_num.dart';
 import 'package:memopize/application/state/memorize_page/s_previous_open_digits_num.dart';
-import 'package:memopize/application/state/s_is_waitng_input.dart';
-import 'package:memopize/application/state/s_open_digits_num.dart';
 import 'package:memopize/application/state/s_score.dart';
 
 class PressedContinueUseCase {
