@@ -24,7 +24,6 @@ Map<String, dynamic> _$$ConstantsJsonHelperImplToJson(
 _$innerConstantsJsonHelperImpl _$$innerConstantsJsonHelperImplFromJson(
         Map<String, dynamic> json) =>
     _$innerConstantsJsonHelperImpl(
-      id: json['id'] as int,
       category: json['category'] as String,
       tex: json['tex'] as String,
       firstthree: json['firstthree'] as String,
@@ -38,7 +37,6 @@ _$innerConstantsJsonHelperImpl _$$innerConstantsJsonHelperImplFromJson(
 Map<String, dynamic> _$$innerConstantsJsonHelperImplToJson(
         _$innerConstantsJsonHelperImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'category': instance.category,
       'tex': instance.tex,
       'firstthree': instance.firstthree,

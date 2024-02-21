@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardElement extends StatelessWidget {
-  CardElement(
+  const CardElement(
       {super.key,
       required this.child,
       this.borderRadius = const BorderRadius.all(Radius.circular(10))});

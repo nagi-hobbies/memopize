@@ -10,9 +10,9 @@ import 'package:path/path.dart';
 class ConstValueDBHelper {
   static final String _dbName = CONST_DATA_DB_NAME;
   static final int _dbVersion = CONST_DATA_DB_VERSION;
-  static final dynamic _tableName = CONST_DATA_DB_TABLE_NAME;
-  // static const String _TABLE_NAME = 'consts';
+  static final String _tableName = CONST_DATA_DB_TABLE_NAME;
 
+  /// DBを開く，なければ作成する
   static Future<Database> _openDB() async {
     return openDatabase(
       join(await getDatabasesPath(), _dbName),
@@ -21,7 +21,7 @@ class ConstValueDBHelper {
         final map = jsonDecode(json);
         List<InnerConstantsJsonHelper> constants =
             ConstantsJsonHelper.fromJson(map).constants.toList();
-        constants.sort((a, b) => a.id.compareTo(b.id));
+        // constants.sort((a, b) => a.id.compareTo(b.id));
         return db.execute(
           """CREATE TABLE $_tableName (
                 id INTEGER PRIMARY KEY,
@@ -149,12 +149,5 @@ class ConstValueDBHelper {
       throw Exception('No data');
     }
     return maps[0]['value'];
-  }
-
-  static Future<List<Map<String, dynamic>>> getAllDataInTable() async {
-    final Database db = await _openDB();
-    final tables = await db.query(_tableName);
-    await db.close();
-    return tables;
   }
 }

@@ -6,7 +6,7 @@ import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/domain/types/display_const_data.dart';
 import 'package:memopize/presentation/router/go_router.dart';
 import 'package:memopize/presentation/router/page_path.dart';
-import 'package:memopize/presentation/widgets/tex_text.dart';
+import 'package:memopize/presentation/widgets/common/tex_text.dart';
 
 class CollectionPage extends HookConsumerWidget {
   const CollectionPage({super.key});

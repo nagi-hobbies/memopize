@@ -1,21 +1,27 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:memopize/domain/features/desktop_initializer.dart';
 import 'package:memopize/presentation/router/app.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux) {
-    // Initialize FFI
-    sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
+    // sqfliteをデスクトップアプリで使うための初期化
+    DesktopInitializer.sqfliteInit();
+    DesktopInitializer.windowSizeInit();
   }
-  // Change the default factory. On iOS/Android, if not using `sqlite_flutter_lib` you can forget
-  // this step, it will use the sqlite version available on the system.
 
-  // databaseFactory = databaseFactoryFfi;
+  LicenseRegistry.addLicense(() async* {
+    final license1 =
+        await rootBundle.loadString('google_fonts/MPLUSRounded1c/OFL.txt');
+    final license2 =
+        await rootBundle.loadString('google_fonts/Poppins/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license1 + license2);
+  });
 
   const app = MyApp();
   const scope = ProviderScope(child: app);

@@ -7,7 +7,7 @@ part of 's_animated_list_model.dart';
 // **************************************************************************
 
 String _$sAnimatedListModelNotifierHash() =>
-    r'6da9ce83ad740eb7c223b2dffb0c5e311a131102';
+    r'986a12086a4d0d1d56107e6f30ae9e08e9d9b1b0';
 
 /// See also [SAnimatedListModelNotifier].
 @ProviderFor(SAnimatedListModelNotifier)

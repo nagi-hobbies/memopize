@@ -10,12 +10,12 @@ class StartGameSessionUseCase {
   StartGameSessionUseCase({
     required this.sGameSessionNotifier,
     required this.sDisplayConstDataListNotifier,
-    required this.animatedListModelNotifier,
+    required this.sAnimatedListModelNotifier,
     required this.constId,
   });
   final SGameSessionNotifier sGameSessionNotifier;
   final SDisplayConstDataListNotifier sDisplayConstDataListNotifier;
-  final SAnimatedListModelNotifier animatedListModelNotifier;
+  final SAnimatedListModelNotifier sAnimatedListModelNotifier;
   final int constId;
 
   Future<void> call() async {
@@ -31,7 +31,7 @@ class StartGameSessionUseCase {
     sGameSessionNotifier.set(
       newSGameSession,
     );
-    animatedListModelNotifier.set(
+    sAnimatedListModelNotifier.set(
       List<int>.generate(
         min(sGameSessionNotifier.value.constValue.length ~/ 10, 4),
         (index) => index,
