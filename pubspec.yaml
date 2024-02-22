@@ -52,6 +52,7 @@ dependencies:
       ref: a738913
   animated_text_kit: ^4.2.2
   shared_preferences: ^2.2.2
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   json_serializable:

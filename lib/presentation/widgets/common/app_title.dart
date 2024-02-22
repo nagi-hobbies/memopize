@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memopize/presentation/widgets/common/logo.dart';
-import 'package:memopize/presentation/widgets/dialogs/setting_dialog.dart';
+import 'package:memopize/presentation/dialogs/setting_dialog.dart';
 
 class AppTitle extends StatelessWidget {
   const AppTitle({super.key});
