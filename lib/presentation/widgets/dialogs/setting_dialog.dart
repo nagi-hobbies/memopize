@@ -98,7 +98,7 @@ class SettingDialog extends HookConsumerWidget {
                 onChanged: (value) {
                   language.value = value!;
                 }),
-            Text('Digits per Column', style: TextStyle(fontSize: 15.h)),
+            Text('Row Length', style: TextStyle(fontSize: 15.h)),
             Slider(
                 value: rowLength.value.toDouble(),
                 onChanged: (value) => rowLength.value = value.toInt(),

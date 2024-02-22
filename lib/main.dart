@@ -15,6 +15,14 @@ Future<void> main() async {
     DesktopInitializer.windowSizeInit();
   }
 
+  // 縦画面固定
+  if (Platform.isAndroid || Platform.isIOS) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
+
   LicenseRegistry.addLicense(() async* {
     final license1 = await rootBundle
         .loadString('assets/google_fonts/MPLUSRounded1c/OFL.txt');

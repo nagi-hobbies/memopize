@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:memopize/domain/types/display_const_data.dart';
@@ -62,9 +63,24 @@ class TopBar extends StatelessWidget {
                                 ? Text(
                                     'High Score: ${displayConstData.highscore}',
                                     style: TextStyle(fontSize: 15.h))
-                                : Text('High Score ! ',
-                                    style: TextStyle(
-                                        fontSize: 15.h, color: Colors.orange)),
+                                : AnimatedTextKit(
+                                    totalRepeatCount: 1,
+                                    animatedTexts: [
+                                        TyperAnimatedText(
+                                          'High Score ! ',
+                                          textStyle: TextStyle(
+                                              fontSize: 15.h,
+                                              color: Colors.orange),
+                                          speed:
+                                              const Duration(milliseconds: 100),
+                                          curve: Curves.easeInOutCubic,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ]),
+
+                            // : Text('High Score ! ',
+                            //     style: TextStyle(
+                            //         fontSize: 15.h, color: Colors.orange)),
                             FittedBox(
                               child: Text(
                                 'Score: $score',
