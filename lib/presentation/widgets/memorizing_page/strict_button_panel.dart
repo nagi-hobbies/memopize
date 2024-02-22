@@ -18,61 +18,59 @@ class StrictButtonPanel extends ConsumerWidget {
       usecase.pressedNum(pressedNum);
     }
 
-    return Container(
-      child: Column(children: [
-        ...List.generate(
-            3,
-            (colInd) => Expanded(
-                    child: FractionallySizedBox(
-                  child: Row(
-                      children: List.generate(
-                          3,
-                          (rowInd) => Expanded(
-                                  child: SizedBox(
-                                height: double.infinity,
-                                child: StrictButton(
-                                  onPressed: isWaitingInput
-                                      ? () => onPressed(colInd * 3 + rowInd + 1)
-                                      : null,
-                                  number: colInd * 3 + rowInd + 1,
-                                ),
-                              )))),
-                ))),
-        Expanded(
-          child: Row(
-            children: [
-              const Expanded(
-                child: SizedBox(
-                  height: double.infinity,
+    return Column(children: [
+      ...List.generate(
+          3,
+          (colInd) => Expanded(
+                  child: FractionallySizedBox(
+                child: Row(
+                    children: List.generate(
+                        3,
+                        (rowInd) => Expanded(
+                                child: SizedBox(
+                              height: double.infinity,
+                              child: StrictButton(
+                                onPressed: isWaitingInput
+                                    ? () => onPressed(colInd * 3 + rowInd + 1)
+                                    : null,
+                                number: colInd * 3 + rowInd + 1,
+                              ),
+                            )))),
+              ))),
+      Expanded(
+        child: Row(
+          children: [
+            const Expanded(
+              child: SizedBox(
+                height: double.infinity,
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: double.infinity,
+                child: StrictButton(
+                  onPressed: isWaitingInput ? () => onPressed(0) : null,
+                  number: 0,
                 ),
               ),
-              Expanded(
-                child: SizedBox(
-                  height: double.infinity,
-                  child: StrictButton(
-                    onPressed: isWaitingInput ? () => onPressed(0) : null,
-                    number: 0,
-                  ),
-                ),
+            ),
+            Expanded(
+              child: SizedBox(
+                height: double.infinity,
+                child: StrictButton(
+                    onPressed: !isWaitingInput
+                        ? () {
+                            final usecase =
+                                ref.read(pressedContinueUseCaseProvider);
+                            usecase.call();
+                          }
+                        : null,
+                    number: -1),
               ),
-              Expanded(
-                child: SizedBox(
-                  height: double.infinity,
-                  child: StrictButton(
-                      onPressed: !isWaitingInput
-                          ? () {
-                              final usecase =
-                                  ref.read(pressedContinueUseCaseProvider);
-                              usecase.call();
-                            }
-                          : null,
-                      number: -1),
-                ),
-              ),
-            ],
-          ),
-        )
-      ]),
-    );
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 }

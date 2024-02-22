@@ -7,7 +7,7 @@ import 'package:memopize/presentation/widgets/memorizing_page/digit_card.dart';
 class RowView extends ConsumerWidget {
   const RowView({super.key, required this.colIndex, this.isDammy = false});
   final int colIndex;
-  final isDammy;
+  final bool isDammy;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
