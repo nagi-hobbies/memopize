@@ -19,7 +19,7 @@ mixin _$GameSession {
   DisplayConstData get displayConstData => throw _privateConstructorUsedError;
   String get constValue => throw _privateConstructorUsedError;
   int get rowLength => throw _privateConstructorUsedError;
-  double get digitFontSize => throw _privateConstructorUsedError;
+  int get revertCount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameSessionCopyWith<GameSession> get copyWith =>
@@ -36,7 +36,7 @@ abstract class $GameSessionCopyWith<$Res> {
       {DisplayConstData displayConstData,
       String constValue,
       int rowLength,
-      double digitFontSize});
+      int revertCount});
 
   $DisplayConstDataCopyWith<$Res> get displayConstData;
 }
@@ -57,7 +57,7 @@ class _$GameSessionCopyWithImpl<$Res, $Val extends GameSession>
     Object? displayConstData = null,
     Object? constValue = null,
     Object? rowLength = null,
-    Object? digitFontSize = null,
+    Object? revertCount = null,
   }) {
     return _then(_value.copyWith(
       displayConstData: null == displayConstData
@@ -72,10 +72,10 @@ class _$GameSessionCopyWithImpl<$Res, $Val extends GameSession>
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
               as int,
-      digitFontSize: null == digitFontSize
-          ? _value.digitFontSize
-          : digitFontSize // ignore: cast_nullable_to_non_nullable
-              as double,
+      revertCount: null == revertCount
+          ? _value.revertCount
+          : revertCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -100,7 +100,7 @@ abstract class _$$GameSessionImplCopyWith<$Res>
       {DisplayConstData displayConstData,
       String constValue,
       int rowLength,
-      double digitFontSize});
+      int revertCount});
 
   @override
   $DisplayConstDataCopyWith<$Res> get displayConstData;
@@ -120,7 +120,7 @@ class __$$GameSessionImplCopyWithImpl<$Res>
     Object? displayConstData = null,
     Object? constValue = null,
     Object? rowLength = null,
-    Object? digitFontSize = null,
+    Object? revertCount = null,
   }) {
     return _then(_$GameSessionImpl(
       displayConstData: null == displayConstData
@@ -135,10 +135,10 @@ class __$$GameSessionImplCopyWithImpl<$Res>
           ? _value.rowLength
           : rowLength // ignore: cast_nullable_to_non_nullable
               as int,
-      digitFontSize: null == digitFontSize
-          ? _value.digitFontSize
-          : digitFontSize // ignore: cast_nullable_to_non_nullable
-              as double,
+      revertCount: null == revertCount
+          ? _value.revertCount
+          : revertCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -150,7 +150,7 @@ class _$GameSessionImpl implements _GameSession {
       {required this.displayConstData,
       required this.constValue,
       required this.rowLength,
-      required this.digitFontSize});
+      required this.revertCount});
 
   @override
   final DisplayConstData displayConstData;
@@ -159,11 +159,11 @@ class _$GameSessionImpl implements _GameSession {
   @override
   final int rowLength;
   @override
-  final double digitFontSize;
+  final int revertCount;
 
   @override
   String toString() {
-    return 'GameSession(displayConstData: $displayConstData, constValue: $constValue, rowLength: $rowLength, digitFontSize: $digitFontSize)';
+    return 'GameSession(displayConstData: $displayConstData, constValue: $constValue, rowLength: $rowLength, revertCount: $revertCount)';
   }
 
   @override
@@ -177,13 +177,13 @@ class _$GameSessionImpl implements _GameSession {
                 other.constValue == constValue) &&
             (identical(other.rowLength, rowLength) ||
                 other.rowLength == rowLength) &&
-            (identical(other.digitFontSize, digitFontSize) ||
-                other.digitFontSize == digitFontSize));
+            (identical(other.revertCount, revertCount) ||
+                other.revertCount == revertCount));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, displayConstData, constValue, rowLength, digitFontSize);
+      runtimeType, displayConstData, constValue, rowLength, revertCount);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +197,7 @@ abstract class _GameSession implements GameSession {
       {required final DisplayConstData displayConstData,
       required final String constValue,
       required final int rowLength,
-      required final double digitFontSize}) = _$GameSessionImpl;
+      required final int revertCount}) = _$GameSessionImpl;
 
   @override
   DisplayConstData get displayConstData;
@@ -206,7 +206,7 @@ abstract class _GameSession implements GameSession {
   @override
   int get rowLength;
   @override
-  double get digitFontSize;
+  int get revertCount;
   @override
   @JsonKey(ignore: true)
   _$$GameSessionImplCopyWith<_$GameSessionImpl> get copyWith =>

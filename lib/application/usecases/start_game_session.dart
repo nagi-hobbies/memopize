@@ -26,18 +26,23 @@ class StartGameSessionUseCase {
   Future<void> _loadConstValue() async {
     final prefs = await SharedPreferences.getInstance();
     final rowLength = prefs.getInt('rowLength') ?? 10;
+    final revertCount = prefs.getInt('revertCount') ?? 10;
     final value = await ConstValueDBHelper.getConstValue(constId);
     final newSGameSession = sGameSessionNotifier.value.copyWith(
       displayConstData: sDisplayConstDataListNotifier.value[constId],
       constValue: value,
       rowLength: rowLength,
+      revertCount: revertCount,
     );
     sGameSessionNotifier.set(
       newSGameSession,
     );
     sAnimatedListModelNotifier.set(
       List<int>.generate(
-        min(sGameSessionNotifier.value.constValue.length ~/ 10, 4),
+        min(
+            sGameSessionNotifier.value.constValue.length ~/
+                sGameSessionNotifier.value.rowLength,
+            4),
         (index) => index,
       ),
     );

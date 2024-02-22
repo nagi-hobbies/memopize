@@ -18,9 +18,8 @@ class RowView extends ConsumerWidget {
       height: 65.h,
       child: Padding(
         padding: EdgeInsets.all(5.0.h),
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          // mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             colIndex == 0
                 ? DigitCard(

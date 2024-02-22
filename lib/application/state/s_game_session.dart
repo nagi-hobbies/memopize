@@ -20,7 +20,7 @@ class SGameSessionNotifier extends _$SGameSessionNotifier {
         ),
         constValue: '',
         rowLength: 10,
-        digitFontSize: 40.0);
+        revertCount: 10);
   }
 
   GameSession get value => state;

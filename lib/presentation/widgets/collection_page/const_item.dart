@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:memopize/domain/types/consts_category.dart';
 import 'package:memopize/domain/types/display_const_data.dart';
 import 'package:memopize/presentation/widgets/common/card_element.dart';
+import 'package:memopize/presentation/widgets/common/category_tag.dart';
 import 'package:memopize/presentation/widgets/common/tex_text.dart';
 
 class ConstItem extends HookWidget {
@@ -21,7 +23,23 @@ class ConstItem extends HookWidget {
           dividerColor: Colors.transparent, // change the divider color
         ),
         child: ExpansionTile(
-            title: Text(displayConstData.name),
+            title: Row(
+              children: [
+                Text(displayConstData.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Expanded(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CategoryTag(
+                        category: displayConstData.category ==
+                                ConstsCategory.mathematical.name
+                            ? ConstsCategory.mathematical
+                            : ConstsCategory.physical),
+                  ],
+                )),
+              ],
+            ),
             subtitle: Row(
               children: [
                 Text('${displayConstData.firstthree}...'),
@@ -34,7 +52,7 @@ class ConstItem extends HookWidget {
                 height: 50,
                 child: TexText(tex: displayConstData.tex)),
             trailing: SizedBox(
-              width: 100,
+              width: 80,
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 AnimatedRotation(
                   duration: const Duration(milliseconds: 300),

@@ -47,6 +47,7 @@ PressedContinueUseCase pressedContinueUseCase(ref) {
     sOpenDigitsNumNotifier: ref.read(sOpenDigitsNumNotifierProvider.notifier),
     sPreviousOpenDigitsNumNotifier:
         ref.read(sPreviousOpenDigitsNumNotifierProvider.notifier),
+    sGameSessionNotifier: ref.read(sGameSessionNotifierProvider.notifier),
   );
 }
 
