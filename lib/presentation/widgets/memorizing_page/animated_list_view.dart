@@ -95,6 +95,7 @@ class AnimatedListView extends HookConsumerWidget {
       if (!isWaiting) {
         return null;
       }
+
       final crrCol = (openDigitNum - 1) ~/ gameSession.rowLength;
       // debugPrint('crrCol: $crrCol, model: ${animatedListModel}');
       if (crrCol == animatedListModel.last) {

@@ -16,10 +16,10 @@ class CardElement extends StatelessWidget {
         borderRadius: borderRadius,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 5,
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
             blurRadius: 7,
-            offset: const Offset(0, 3),
+            offset: const Offset(0, 0),
           ),
         ],
       ),

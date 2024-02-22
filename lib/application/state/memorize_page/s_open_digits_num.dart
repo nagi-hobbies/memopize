@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part './s_open_digits_num.g.dart';
+part 's_open_digits_num.g.dart';
 
 @riverpod
 class SOpenDigitsNumNotifier extends _$SOpenDigitsNumNotifier {

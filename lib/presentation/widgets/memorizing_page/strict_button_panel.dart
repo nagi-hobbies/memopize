@@ -74,39 +74,5 @@ class StrictButtonPanel extends ConsumerWidget {
         )
       ]),
     );
-
-    // GridView.count(
-    //     padding: const EdgeInsets.all(10),
-    //     physics: const NeverScrollableScrollPhysics(), // scroll禁止
-    //     // crossAxisCount: 3,
-
-    //     mainAxisSpacing: 10,
-    //     crossAxisSpacing: 10,
-    //     children: [
-    //       ...List.generate(
-    //           9,
-    //           (index) => SizedBox(
-    //                 // width: w,
-    //                 // height: h,
-    //                 child: StrictButton(
-    //                     onPressed:
-    //                         isWaitingInput ? () => onPressed(index + 1) : null,
-    //                     number: index + 1),
-    //               )),
-    //       SizedBox(
-    //           // width: w,
-    //           // height: h,
-    //           ),
-    //       SizedBox(
-    //           // width: w,
-    //           // height: h,
-    //           child: StrictButton(
-    //               onPressed: isWaitingInput ? () => onPressed(0) : null,
-    //               number: 0)),
-    //       SizedBox(
-    //           // width: w,
-    //           // height: h,
-    //           )
-    //     ]);
   }
 }

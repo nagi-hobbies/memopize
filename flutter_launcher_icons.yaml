@@ -1,0 +1,13 @@
+flutter_launcher_icons:
+  image_path_android: "assets/images/memoPize_icon_windows.png"
+  image_path_ios: "assets/images/memoPize_icon.png"
+  # android:
+  #   adaptive_icon_background: #395886
+  ios:
+    remove_alpha_ios: true
+  windows:
+    image_path: "assets/images/memoPize_icon_windows.png"
+    generate: true
+  macos:
+    image_path: "assets/images/memoPize_icon_windows.png"
+    generate: true

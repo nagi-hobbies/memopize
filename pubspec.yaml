@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flip_card:
-  flutter_svg:
+  flutter_svg: ^2.0.10+1
   tex:
   path:
   sqlite3_flutter_libs:
@@ -50,6 +50,8 @@ dependencies:
       url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
       ref: a738913
+  animated_text_kit: ^4.2.2
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   json_serializable:
@@ -65,6 +67,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,7 +84,6 @@ flutter:
   assets:
     - assets/google_fonts/MPLUSRounded1c/
     - assets/google_fonts/Poppins/
-    - assets/texts/const_data/
     - assets/jsons/
     - assets/images/
 
