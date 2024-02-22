@@ -7,7 +7,7 @@ import 'package:memopize/application/state/memorize_page/s_previous_open_digits_
 import 'package:memopize/application/state/s_display_const_data_list.dart';
 import 'package:memopize/application/state/s_game_session.dart';
 import 'package:memopize/application/state/s_score.dart';
-import 'package:memopize/application/usecases/pressed_Num.dart';
+import 'package:memopize/application/usecases/pressed_num.dart';
 import 'package:memopize/application/usecases/start_game_session.dart';
 import 'package:memopize/application/usecases/pressed_continue.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
