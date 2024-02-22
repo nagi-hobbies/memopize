@@ -42,14 +42,18 @@ class SettingDialog extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (Platform.isAndroid)
-              Row(children: [
-                Text('Privacy Policy',
-                    style: TextStyle(
-                        fontSize: 20.h,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold)),
-                PrivacyPolicyButton()
-              ]),
+              Row(
+                children: [
+                  const Icon(Icons.privacy_tip, color: Colors.grey),
+                  Text('Privacy Policy',
+                      style: TextStyle(
+                          fontSize: 20.h,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold)),
+                  const PrivacyPolicyButton(),
+                ],
+              ),
+            if (Platform.isAndroid) const Divider(),
             Row(
               children: [
                 const Icon(Icons.info, color: Colors.grey),
@@ -63,18 +67,6 @@ class SettingDialog extends HookConsumerWidget {
                       showLicensePage(context: context);
                     },
                     child: Text('show', style: TextStyle(fontSize: 15.h))),
-                Expanded(
-                    child: Container(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.close,
-                        color: Colors.grey,
-                      )),
-                )),
               ],
             ),
             const Divider(),

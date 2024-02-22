@@ -7,12 +7,12 @@ class PrivacyPolicyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Uri _privacyPolicyUri = Uri.parse(
+    final Uri privacyPolicyUri = Uri.parse(
         'https://nagi-hobbies.github.io/memopize/PrivacyPolicy/Android/English');
 
     Future<void> _launchPrivacyPolicy() async {
-      if (!await launchUrl(_privacyPolicyUri)) {
-        throw 'Could not launch $_privacyPolicyUri';
+      if (!await launchUrl(privacyPolicyUri)) {
+        throw 'Could not launch $privacyPolicyUri';
       }
     }
 
