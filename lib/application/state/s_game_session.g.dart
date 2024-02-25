@@ -7,7 +7,7 @@ part of 's_game_session.dart';
 // **************************************************************************
 
 String _$sGameSessionNotifierHash() =>
-    r'e50688a8529bd0dc9fa494746b4ce4fb9c26a85b';
+    r'c39bb8796f13322a78038b4872ec7b1da7f3693d';
 
 /// See also [SGameSessionNotifier].
 @ProviderFor(SGameSessionNotifier)

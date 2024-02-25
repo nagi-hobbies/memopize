@@ -16,7 +16,7 @@ class SettingDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = useState('Ja');
     final rowLength = useState(10);
-    final revertCount = useState(10);
+    final wheatherRevert = useState(true);
 
     final future = useMemoized(SharedPreferences.getInstance);
     final snapshot = useFuture(future, initialData: null);
@@ -28,16 +28,17 @@ class SettingDialog extends HookConsumerWidget {
         debugPrint('prefs: $prefs');
         final lang = prefs.getString('lang') ?? 'Ja';
         final rowL = prefs.getInt('rowLength') ?? 10;
-        final revertC = prefs.getInt('revertCount') ?? 10;
+        final wheatherR = prefs.getBool('wheatherRevert') ?? true;
         language.value = lang;
         rowLength.value = rowL;
-        revertCount.value = revertC;
+        wheatherRevert.value = wheatherR;
       }
       return () {};
     }, [snapshot.data]);
 
-    return Dialog(
-      child: Container(
+    return Theme(
+      data: ThemeData.light(),
+      child: Dialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -87,7 +88,10 @@ class SettingDialog extends HookConsumerWidget {
                 ),
               ],
             ),
-            Text('Language', style: TextStyle(fontSize: 15.h)),
+            SizedBox(
+                width: double.infinity,
+                child: Text(' ・${language.value == 'En' ? 'Language' : '言語'}',
+                    style: TextStyle(fontSize: 15.h))),
             RadioListTile(
                 title: const Text('日本語'),
                 value: 'Ja',
@@ -102,7 +106,12 @@ class SettingDialog extends HookConsumerWidget {
                 onChanged: (value) {
                   language.value = value!;
                 }),
-            Text('Row Length', style: TextStyle(fontSize: 15.h)),
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                  ' ・${language.value == 'En' ? 'Row Length' : '1行の桁数'}',
+                  style: TextStyle(fontSize: 15.h)),
+            ),
             Slider(
                 value: rowLength.value.toDouble(),
                 onChanged: (value) => rowLength.value = value.toInt(),
@@ -110,20 +119,21 @@ class SettingDialog extends HookConsumerWidget {
                 max: 10,
                 divisions: 9,
                 label: rowLength.value.round().toString()),
-            Text('Revert Count', style: TextStyle(fontSize: 15.h)),
-            Slider(
-                value: revertCount.value.toDouble(),
-                onChanged: (value) => revertCount.value = value.toInt(),
-                min: 0,
-                max: 10,
-                divisions: 10,
-                label: revertCount.value.round().toString()),
+            SizedBox(
+              width: double.infinity,
+              child: Text(' ・${language.value == 'En' ? 'Revert？' : '巻き戻し'}',
+                  style: TextStyle(fontSize: 15.h)),
+            ),
+            Switch(
+              value: wheatherRevert.value,
+              onChanged: (value) => wheatherRevert.value = value,
+            ),
             TextButton(
                 onPressed: () async {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString('lang', language.value);
                   prefs.setInt('rowLength', rowLength.value);
-                  prefs.setInt('revertCount', revertCount.value);
+                  prefs.setBool('wheatherRevert', wheatherRevert.value);
                   final router = ref.read(goRouterProvider);
                   Navigator.pop(context);
                   router.goNamed(

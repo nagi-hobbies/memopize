@@ -23,7 +23,8 @@ class PressedContinueUseCase {
   void call() {
     sOpenDigitsNumNotifier.set(max(
         sPreviousOpenDigitsNumNotifier.value -
-            sGameSessionNotifier.value.revertCount,
+            sGameSessionNotifier.value.rowLength *
+                (sGameSessionNotifier.value.wheatherRevert ? 1 : 0),
         0));
     sIsWaitingInputNotifier.toggle();
   }
