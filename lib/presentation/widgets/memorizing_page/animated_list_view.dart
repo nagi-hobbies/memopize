@@ -100,13 +100,11 @@ class AnimatedListView extends HookConsumerWidget {
       // debugPrint('crrCol: $crrCol, model: ${animatedListModel}');
       if (crrCol == animatedListModel.last) {
         Future.delayed(const Duration(milliseconds: 0), () {
-          debugPrint('next');
           _next();
         });
       } else if (crrCol < animatedListModel.first + 1 &&
           animatedListModel.first > 0) {
         Future.delayed(const Duration(milliseconds: 0), () {
-          debugPrint('back');
           _back();
         });
       }

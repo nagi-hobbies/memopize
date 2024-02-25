@@ -11,6 +11,6 @@ class GameSession with _$GameSession {
     required DisplayConstData displayConstData,
     required String constValue,
     required int rowLength,
-    required int revertCount,
+    required bool wheatherRevert,
   }) = _GameSession;
 }

@@ -29,7 +29,7 @@ class RowView extends ConsumerWidget {
                 : DigitCard(
                     isDammy: isDammy,
                     index: -2,
-                    text: (colIndex * gameSession.rowLength).toString()),
+                    text: (colIndex * gameSession.rowLength + 1).toString()),
             ...List.generate(gameSession.rowLength, (rowIndex) {
               return DigitCard(
                   isDammy: isDammy,
